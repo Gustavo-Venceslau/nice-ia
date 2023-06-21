@@ -8,4 +8,5 @@ spring:
     hibernate:
       ddl-auto: create-drop
     database: mysql
+    show-sql: true
 
