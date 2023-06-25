@@ -1,8 +1,8 @@
 package com.galmv_.niceia.config;
 
+import com.galmv_.niceia.auth.AuthenticationService;
+import com.galmv_.niceia.auth.RegisterRequest;
 import com.galmv_.niceia.student.StudentRepository;
-import com.galmv_.niceia.student.entities.Student;
-import com.galmv_.niceia.student.enums.StudentRole;
 import lombok.RequiredArgsConstructor;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.context.annotation.Configuration;
@@ -15,14 +15,18 @@ public class Instantiation implements CommandLineRunner {
 
     private final StudentRepository repository;
 
+    private final AuthenticationService service;
+
     @Override
     public void run(String... args) throws Exception {
 
-        Student student1 = new Student(null, "Gustavo", "de Almeida", "gustavo@mail.com", "123", StudentRole.ADMIN);
-        Student student2 = new Student(null, "sandro", "paz", "sandro@mail.com", "12345", StudentRole.USER);
-        Student student3 = new Student(null, "maria", "souza", "marias@mail.com", "123345", StudentRole.USER);
+        RegisterRequest student1 = new RegisterRequest("Gustavo", "de Almeida", "gustavo@mail.com", "123");
+        RegisterRequest student2 = new RegisterRequest("sandro", "paz", "sandro@mail.com", "12345");
+        RegisterRequest student3 = new RegisterRequest("maria", "souza", "marias@mail.com", "123345");
 
-        repository.saveAll(List.of(student1, student2, student3));
+        service.register(student1);
+        service.register(student2);
+        service.register(student3);
 
     }
 }
