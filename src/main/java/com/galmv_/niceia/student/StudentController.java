@@ -1,6 +1,7 @@
 package com.galmv_.niceia.student;
 
 import com.galmv_.niceia.student.entities.Student;
+import com.galmv_.niceia.student.exceptions.UserNotFoundException;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -19,14 +20,21 @@ public class StudentController {
 
     @GetMapping
     public ResponseEntity<Set<StudentDTO>> findAll(){
-        Set<Student> students = new HashSet<>(service.findAll());
-        Set<StudentDTO> studentDTOS = new HashSet<>(students.stream().map(student -> new StudentDTO(
-                student.getFirstName(),
-                student.getLastName(),
-                student.getUsername(),
-                student.getPassword()
-        )).toList());
+        try {
+            Set<Student> students = new HashSet<>(service.findAll());
+            Set<StudentDTO> studentDTOS = new HashSet<>(students.stream().map(student -> new StudentDTO(
+                    student.getFirstName(),
+                    student.getLastName(),
+                    student.getUsername(),
+                    student.getPassword()
+            )).toList());
 
-        return ResponseEntity.ok().body(studentDTOS);
+            return ResponseEntity.ok().body(studentDTOS);
+        }
+        catch (UserNotFoundException e){
+            System.out.println("Exception: " + e);
+
+            return ResponseEntity.notFound().build();
+        }
     }
 }

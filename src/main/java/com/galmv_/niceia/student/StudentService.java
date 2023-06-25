@@ -6,7 +6,9 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
 import java.util.HashSet;
+import java.util.Optional;
 import java.util.Set;
+import java.util.UUID;
 
 @Service
 @RequiredArgsConstructor
@@ -22,5 +24,15 @@ public class StudentService {
         }
 
         return students;
+    }
+
+    public Student findById(UUID id){
+        Optional<Student> optionalStudent = this.repository.findById(id);
+
+        if(optionalStudent.isEmpty()){
+            throw new UserNotFoundException("User not founded!");
+        }
+
+        return optionalStudent.get();
     }
 }

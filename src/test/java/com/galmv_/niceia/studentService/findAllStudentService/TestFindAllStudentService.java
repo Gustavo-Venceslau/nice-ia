@@ -27,7 +27,7 @@ public class TestFindAllStudentService {
 
     @Test
     @DisplayName("Test if find all methods retrieve all students")
-    public void testFindAllStudents(){
+    public void testSuccessFindAllStudents(){
         Set<Student> studentsList = this.service.findAll();
         Assert.assertFalse(studentsList.isEmpty());
     }
