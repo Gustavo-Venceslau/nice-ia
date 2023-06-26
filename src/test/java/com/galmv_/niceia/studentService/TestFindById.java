@@ -1,4 +1,4 @@
-package com.galmv_.niceia.studentService.findById;
+package com.galmv_.niceia.studentService;
 
 import com.galmv_.niceia.student.StudentRepository;
 import com.galmv_.niceia.student.StudentService;
@@ -14,12 +14,11 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.context.junit4.SpringRunner;
 
-import java.util.Optional;
 import java.util.UUID;
 
 @SpringBootTest
 @RunWith(SpringRunner.class)
-public class TestFindByIdStudentService {
+public class TestFindById {
 
     @Resource
     private StudentRepository repository;

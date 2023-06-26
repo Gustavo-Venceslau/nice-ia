@@ -4,11 +4,14 @@ import com.galmv_.niceia.config.JwtService;
 import com.galmv_.niceia.student.StudentRepository;
 import com.galmv_.niceia.student.entities.Student;
 import com.galmv_.niceia.student.enums.StudentRole;
+import com.galmv_.niceia.student.exceptions.UserAlreadyExistsException;
 import lombok.RequiredArgsConstructor;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
+
+import java.util.Optional;
 
 @Service
 @RequiredArgsConstructor
@@ -20,6 +23,12 @@ public class AuthenticationService {
     private final AuthenticationManager authenticationManager;
 
     public AuthenticationResponse register(RegisterRequest request) {
+        Optional<Student> optionalStudent = this.repository.findByEmail(request.getEmail());
+
+        if(optionalStudent.isPresent()){
+            throw new UserAlreadyExistsException("You can't create because this user already exists!");
+        }
+
         var user = Student.builder()
                 .firstName(request.getFirstName())
                 .lastName(request.getLastName())

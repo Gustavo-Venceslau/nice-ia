@@ -1,4 +1,4 @@
-package com.galmv_.niceia.studentService.findAllStudentService;
+package com.galmv_.niceia.studentService;
 
 import com.galmv_.niceia.student.StudentRepository;
 import com.galmv_.niceia.student.StudentService;
@@ -17,7 +17,7 @@ import java.util.Set;
 
 @SpringBootTest
 @RunWith(SpringRunner.class)
-public class TestFindAllStudentService {
+public class TestFindAll {
 
     @Resource
     private StudentRepository repository;
