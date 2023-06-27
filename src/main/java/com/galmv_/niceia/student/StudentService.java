@@ -54,4 +54,14 @@ public class StudentService {
         studentToUpdate.setEmail(data.email());
         studentToUpdate.setPassword(data.password());
     }
+
+    public void delete(UUID id){
+        Student student = findById(id);
+
+        if(student == null){
+            throw new UserNotFoundException("User not founded");
+        }
+
+        this.repository.delete(student);
+    }
 }
