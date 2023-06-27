@@ -18,7 +18,7 @@ import org.springframework.test.context.junit4.SpringRunner;
 
 @SpringBootTest
 @RunWith(SpringRunner.class)
-public class TestCreate {
+public class TestRegister {
 
     @Resource
     private StudentRepository repository;
@@ -31,7 +31,7 @@ public class TestCreate {
 
     @Test
     @DisplayName("it should to be able create a student")
-    public void testSuccessCreateStudent(){
+    public void testSuccessRegisterStudent(){
         RegisterRequest request = new RegisterRequest("gu", "almeida", "gualmeida@mail.com", "123456");
 
         Student student = Student.builder()
@@ -47,7 +47,7 @@ public class TestCreate {
 
     @Test
     @DisplayName("it should not be able to create")
-    public void testFailCreateStudent(){
+    public void testFailRegisterStudent(){
         RegisterRequest request2 = new RegisterRequest("gu", "almeida", "gualmeida@mail.com", "123456");
 
         Assert.assertThrows(UserAlreadyExistsException.class, () -> this.authenticationService.register(request2));

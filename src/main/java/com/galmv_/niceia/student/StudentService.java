@@ -35,4 +35,23 @@ public class StudentService {
 
         return optionalStudent.get();
     }
+
+    public void update(UUID id, StudentDTO data){
+        Student studentExists = findById(id);
+
+        if(studentExists == null){
+            throw new UserNotFoundException("User not exists!");
+        }
+
+        updateStudentData(studentExists, data);
+
+        repository.save(studentExists);
+    }
+
+    private void updateStudentData(Student studentToUpdate, StudentDTO data) {
+        studentToUpdate.setFirstName(data.firstName());
+        studentToUpdate.setLastName(data.lastName());
+        studentToUpdate.setEmail(data.email());
+        studentToUpdate.setPassword(data.password());
+    }
 }
