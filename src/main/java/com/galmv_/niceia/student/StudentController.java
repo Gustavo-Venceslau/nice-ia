@@ -1,6 +1,5 @@
 package com.galmv_.niceia.student;
 
-import com.galmv_.niceia.student.entities.Student;
 import com.galmv_.niceia.student.exceptions.UserNotFoundException;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;

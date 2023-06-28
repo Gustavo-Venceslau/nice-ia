@@ -1,4 +1,4 @@
-package com.galmv_.niceia.student.entities;
+package com.galmv_.niceia.student;
 
 import com.galmv_.niceia.student.enums.StudentRole;
 import jakarta.persistence.*;
@@ -23,7 +23,7 @@ import java.util.UUID;
 public class Student implements UserDetails {
 
     @Id
-    @GeneratedValue
+    @GeneratedValue(strategy = GenerationType.UUID)
     private UUID id;
     private String firstName;
     private String lastName;

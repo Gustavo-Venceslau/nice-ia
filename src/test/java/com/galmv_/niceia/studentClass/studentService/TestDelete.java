@@ -1,9 +1,8 @@
-package com.galmv_.niceia.studentService;
+package com.galmv_.niceia.studentClass.studentService;
 
-import com.galmv_.niceia.student.StudentDTO;
 import com.galmv_.niceia.student.StudentRepository;
 import com.galmv_.niceia.student.StudentService;
-import com.galmv_.niceia.student.entities.Student;
+import com.galmv_.niceia.student.Student;
 import com.galmv_.niceia.student.enums.StudentRole;
 import com.galmv_.niceia.student.exceptions.UserNotFoundException;
 import jakarta.annotation.Resource;
@@ -20,37 +19,32 @@ import java.util.UUID;
 
 @SpringBootTest
 @RunWith(SpringRunner.class)
-public class TestUpdate {
+public class TestDelete {
 
     @Resource
     private StudentRepository repository;
 
     @Autowired
-    private StudentService studentService;
+    private StudentService service;
 
     @Autowired
     private PasswordEncoder passwordEncoder;
 
     @Test
-    @DisplayName("it should to able to update a existing user")
-    public void testSuccessUpdate(){
+    @DisplayName("it should to be able to delete a existing student")
+    public void testSuccessDelete(){
         Student student = new Student(null ,"gu", "almeida", "gualmeida@mail.com", passwordEncoder.encode("123456"), StudentRole.USER);
 
-        repository.save(student);
+        this.repository.save(student);
 
-        StudentDTO studentDTO = new StudentDTO("gu", "almeida", "gua@mail.com", passwordEncoder.encode("123456"));
+        this.service.delete(student.getId());
 
-        this.studentService.update(student.getId(), studentDTO);
-
-        Assert.assertEquals("gua@mail.com", this.studentService.findById(student.getId()).getEmail());
+        Assert.assertTrue(this.repository.findById(student.getId()).isEmpty());
     }
 
     @Test
-    @DisplayName("it should not to be able to update a user whether does exists!")
-    public void testFailUpdate(){
-        StudentDTO studentDTO = new StudentDTO("gu", "almeida", "gua@mail.com", passwordEncoder.encode("123456"));
-
-        Assert.assertThrows(UserNotFoundException.class, () -> this.studentService.update(new UUID(0, 0), studentDTO));
+    @DisplayName("it should not to be able to delete a student nonexisting student")
+    public void testFailDelete(){
+        Assert.assertThrows(UserNotFoundException.class,() -> this.service.delete(new UUID(0, 0)));
     }
-
 }

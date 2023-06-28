@@ -1,8 +1,8 @@
-package com.galmv_.niceia.studentService;
+package com.galmv_.niceia.studentClass.studentService;
 
 import com.galmv_.niceia.student.StudentRepository;
 import com.galmv_.niceia.student.StudentService;
-import com.galmv_.niceia.student.entities.Student;
+import com.galmv_.niceia.student.Student;
 import com.galmv_.niceia.student.enums.StudentRole;
 import com.galmv_.niceia.student.exceptions.UserNotFoundException;
 import jakarta.annotation.Resource;

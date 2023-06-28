@@ -1,11 +1,11 @@
-package com.galmv_.niceia.studentService;
+package com.galmv_.niceia.studentClass.studentService;
 
 import com.galmv_.niceia.auth.AuthenticationResponse;
 import com.galmv_.niceia.auth.AuthenticationService;
 import com.galmv_.niceia.auth.RegisterRequest;
 import com.galmv_.niceia.config.JwtService;
 import com.galmv_.niceia.student.StudentRepository;
-import com.galmv_.niceia.student.entities.Student;
+import com.galmv_.niceia.student.Student;
 import com.galmv_.niceia.student.exceptions.UserAlreadyExistsException;
 import jakarta.annotation.Resource;
 import org.junit.Assert;

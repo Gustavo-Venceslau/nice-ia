@@ -2,7 +2,7 @@ package com.galmv_.niceia.auth;
 
 import com.galmv_.niceia.config.JwtService;
 import com.galmv_.niceia.student.StudentRepository;
-import com.galmv_.niceia.student.entities.Student;
+import com.galmv_.niceia.student.Student;
 import com.galmv_.niceia.student.enums.StudentRole;
 import com.galmv_.niceia.student.exceptions.UserAlreadyExistsException;
 import lombok.RequiredArgsConstructor;

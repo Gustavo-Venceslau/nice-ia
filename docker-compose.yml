@@ -16,9 +16,11 @@ services:
     command: java -jar /app.jar
     container_name: spring-container
     ports:
-      - "8080:8080"
+      - "8081:8081"
     environment:
-      SPRING_DATASOURCE_URL: jdbc:mysql://db:3306/niceDB?autoReconnect=true&useSSL=false
+      SPRING_DATASOURCE_URL: jdbc:h2:mem:niceDB
+      SERVER_PORT: 8081
+#      SPRING_DATASOURCE_URL: jdbc:mysql://db:3306/niceDB?autoReconnect=true&useSSL=false
     volumes:
       - /temp
     depends_on:
@@ -28,3 +30,6 @@ services:
       context: .
       dockerfile: Dockerfile_Jenkins
     container_name: jenkins
+    ports:
+      - "8080:8080"
+    restart: always
