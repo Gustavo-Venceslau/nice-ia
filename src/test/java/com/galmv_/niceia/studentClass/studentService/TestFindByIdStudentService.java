@@ -12,14 +12,13 @@ import org.junit.jupiter.api.DisplayName;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
-import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.test.context.junit4.SpringRunner;
 
 import java.util.UUID;
 
 @SpringBootTest
 @RunWith(SpringRunner.class)
-public class TestDelete {
+public class TestFindByIdStudentService {
 
     @Resource
     private StudentRepository repository;
@@ -27,24 +26,20 @@ public class TestDelete {
     @Autowired
     private StudentService service;
 
-    @Autowired
-    private PasswordEncoder passwordEncoder;
-
     @Test
-    @DisplayName("it should to be able to delete a existing student")
-    public void testSuccessDelete(){
-        Student student = new Student(null ,"gu", "almeida", "gualmeida@mail.com", passwordEncoder.encode("123456"), StudentRole.USER);
+    @DisplayName("it should able to find a user by id if the user exists!")
+    public void testSuccessFindById(){
+        Student studentToGetId = repository
+                .save(new Student(null, "meida", "vence", "meidavence@mail.com", "321", StudentRole.USER));
 
-        this.repository.save(student);
-
-        this.service.delete(student.getId());
-
-        Assert.assertTrue(this.repository.findById(student.getId()).isEmpty());
+        Student student = this.service.findById(studentToGetId.getId());
+        Assert.assertNotNull(student.getId());
     }
 
     @Test
-    @DisplayName("it should not to be able to delete a student nonexisting student")
-    public void testFailDelete(){
-        Assert.assertThrows(UserNotFoundException.class,() -> this.service.delete(new UUID(0, 0)));
+    @DisplayName("it should not to be able to find a user by id if does not exist")
+    public void testFailFindById(){
+        Assert.assertThrows(UserNotFoundException.class, () -> this.service.findById(new UUID(0, 0)));
     }
+
 }

@@ -20,7 +20,7 @@ import java.util.UUID;
 
 @SpringBootTest
 @RunWith(SpringRunner.class)
-public class TestUpdate {
+public class TestUpdateStudentService {
 
     @Resource
     private StudentRepository repository;

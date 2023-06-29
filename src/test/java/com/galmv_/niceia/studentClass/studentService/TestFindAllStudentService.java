@@ -17,7 +17,7 @@ import java.util.Set;
 
 @SpringBootTest
 @RunWith(SpringRunner.class)
-public class TestFindAll {
+public class TestFindAllStudentService {
 
     @Resource
     private StudentRepository repository;

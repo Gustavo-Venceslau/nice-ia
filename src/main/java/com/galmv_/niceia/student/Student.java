@@ -23,7 +23,7 @@ import java.util.UUID;
 public class Student implements UserDetails {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.UUID)
+    @GeneratedValue
     private UUID id;
     private String firstName;
     private String lastName;
