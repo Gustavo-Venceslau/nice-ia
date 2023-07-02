@@ -2,6 +2,8 @@ package com.galmv_.niceia.config;
 
 import com.galmv_.niceia.auth.AuthenticationService;
 import com.galmv_.niceia.auth.RegisterRequest;
+import com.galmv_.niceia.comment.Comment;
+import com.galmv_.niceia.comment.CommentRepository;
 import com.galmv_.niceia.post.Post;
 import com.galmv_.niceia.post.PostRepository;
 import com.galmv_.niceia.student.Student;
@@ -10,6 +12,7 @@ import com.galmv_.niceia.student.enums.StudentRole;
 import lombok.RequiredArgsConstructor;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.security.crypto.password.PasswordEncoder;
 
 import java.util.List;
 import java.util.UUID;
@@ -22,7 +25,11 @@ public class Instantiation implements CommandLineRunner {
 
     private final StudentRepository studentRepository;
 
+    private final CommentRepository commentRepository;
+
     private final AuthenticationService service;
+
+    private final PasswordEncoder passwordEncoder;
 
     @Override
     public void run(String... args) throws Exception {
@@ -35,8 +42,10 @@ public class Instantiation implements CommandLineRunner {
         service.register(student2);
         service.register(student3);
 
-        Student student4 = new Student(null, "Almeida", "Venceslau", "almeida@mail.com", "12345", StudentRole.USER);
-        Student student5 = new Student(null, "Venceslau", "Almeida", "venceslau@mail.com", "123456", StudentRole.USER);
+        Student student4 = new
+                Student(null, "Almeida", "Venceslau", "almeida@mail.com", passwordEncoder.encode("12345"), StudentRole.USER);
+        Student student5 = new
+                Student(null, "Venceslau", "Almeida", "venceslau@mail.com", passwordEncoder.encode("123456"), StudentRole.USER);
 
         this.studentRepository.saveAll(List.of(student4, student5));
 
@@ -46,6 +55,9 @@ public class Instantiation implements CommandLineRunner {
 
         this.postRepository.saveAll(List.of(post1, post2, post3));
 
+        Comment comment1 = new Comment(null, "Good way, guys!", post1, student4);
+        Comment comment2 = new Comment(null, "guys!", post1, student5);
 
+        this.commentRepository.saveAll(List.of(comment1, comment2));
     }
 }

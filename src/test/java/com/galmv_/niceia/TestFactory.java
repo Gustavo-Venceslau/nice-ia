@@ -11,7 +11,10 @@ import com.galmv_.niceia.student.StudentRepository;
 import com.galmv_.niceia.student.StudentService;
 import com.galmv_.niceia.student.enums.StudentRole;
 import jakarta.annotation.Resource;
+import org.junit.After;
 import org.junit.Before;
+import org.junit.jupiter.api.AfterEach;
+import org.junit.jupiter.api.BeforeEach;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
@@ -34,10 +37,11 @@ public class TestFactory {
     protected StudentService studentService;
     @Autowired
     protected PostService postService;
+
     @Autowired
     protected CommentService commentService;
 
-    protected Student student = new Student(null, "Gustavo", "de Almeida", "gustavo@gmail.com", "1234", StudentRole.USER);
+    protected Student student = new Student(null, "Gustavo", "de Almeida", "gustavodealmeida@gmail.com", "1234", StudentRole.USER);
     protected Post post = new Post(null, "Good Morning", "ImageURL", student);
     protected Comment comment = new Comment(null, "Good way, guys!", post, student);
 
@@ -48,4 +52,10 @@ public class TestFactory {
         commentRepository.save(comment);
     }
 
+    @After
+    public void setUpAfter(){
+        commentRepository.deleteAll();
+        postRepository.deleteAll();
+        studentRepository.deleteAll();
+    }
 }

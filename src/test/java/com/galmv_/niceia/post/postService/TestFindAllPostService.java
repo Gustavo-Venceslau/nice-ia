@@ -22,6 +22,7 @@ public class TestFindAllPostService extends TestFactory {
     @Test
     @DisplayName("it should not to be able find all whether a list is empty")
     public void testFailFindAll(){
+        this.commentRepository.deleteAll();
         this.postRepository.deleteAll();
 
         Assert.assertThrows(PostNotFoundedException.class, () -> this.postService.findAll());

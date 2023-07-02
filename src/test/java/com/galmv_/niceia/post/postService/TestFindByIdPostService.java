@@ -23,7 +23,6 @@ public class TestFindByIdPostService extends TestFactory {
     @Test
     @DisplayName("it should not to be able to find a post by id whether don't exists")
     public void testFailFindById(){
-        postRepository.deleteAll();
         Assert.assertThrows(PostNotFoundedException.class, () -> this.postService.findById(new UUID(0, 0)));
     }
 }

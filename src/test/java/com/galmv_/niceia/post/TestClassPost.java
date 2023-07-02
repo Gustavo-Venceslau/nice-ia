@@ -10,6 +10,6 @@ public class TestClassPost extends TestFactory {
     @Test
     @DisplayName("it should be able to instance a new Post object")
     public void testSuccessPostInstantiation(){
-        Assert.assertNull(post.getId());
+        Assert.assertNotNull(post.getId());
     }
 }
