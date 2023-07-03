@@ -6,6 +6,10 @@ import com.galmv_.niceia.comment.Comment;
 import com.galmv_.niceia.comment.CommentRepository;
 import com.galmv_.niceia.post.Post;
 import com.galmv_.niceia.post.PostRepository;
+import com.galmv_.niceia.reaction.Enums.ComponentType;
+import com.galmv_.niceia.reaction.Enums.Type;
+import com.galmv_.niceia.reaction.Reaction;
+import com.galmv_.niceia.reaction.ReactionRepository;
 import com.galmv_.niceia.student.Student;
 import com.galmv_.niceia.student.StudentRepository;
 import com.galmv_.niceia.student.enums.StudentRole;
@@ -26,6 +30,8 @@ public class Instantiation implements CommandLineRunner {
     private final StudentRepository studentRepository;
 
     private final CommentRepository commentRepository;
+
+    private final ReactionRepository reactionRepository;
 
     private final AuthenticationService service;
 
@@ -59,5 +65,10 @@ public class Instantiation implements CommandLineRunner {
         Comment comment2 = new Comment(null, "guys!", post1, student5);
 
         this.commentRepository.saveAll(List.of(comment1, comment2));
+
+        Reaction reaction1 = new Reaction(null, Type.LIKE, ComponentType.POST, post1.getId(), student4);
+        Reaction reaction2 = new Reaction(null, Type.LOVED, ComponentType.COMMENT, comment1.getId(), student5);
+
+        this.reactionRepository.saveAll(List.of(reaction1, reaction2));
     }
 }
