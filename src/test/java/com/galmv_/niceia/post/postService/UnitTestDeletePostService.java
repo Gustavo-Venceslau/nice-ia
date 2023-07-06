@@ -1,6 +1,6 @@
 package com.galmv_.niceia.post.postService;
 
-import com.galmv_.niceia.TestFactory;
+import com.galmv_.niceia.UnitTestFactory;
 import com.galmv_.niceia.post.Post;
 import com.galmv_.niceia.post.exceptions.PostNotFoundedException;
 import com.galmv_.niceia.student.Student;
@@ -11,7 +11,7 @@ import org.junit.jupiter.api.DisplayName;
 
 import java.util.UUID;
 
-public class TestDeletePostService extends TestFactory {
+public class UnitTestDeletePostService extends UnitTestFactory {
     @Test
     @DisplayName("should to be able to delete a post if it exist")
     public void testSuccessDeletePost(){

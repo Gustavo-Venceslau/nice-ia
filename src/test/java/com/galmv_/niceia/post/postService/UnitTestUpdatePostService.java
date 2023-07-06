@@ -1,6 +1,6 @@
 package com.galmv_.niceia.post.postService;
 
-import com.galmv_.niceia.TestFactory;
+import com.galmv_.niceia.UnitTestFactory;
 import com.galmv_.niceia.post.PostDTO;
 import com.galmv_.niceia.post.exceptions.PostNotFoundedException;
 import org.junit.Assert;
@@ -9,7 +9,7 @@ import org.junit.jupiter.api.DisplayName;
 
 import java.util.UUID;
 
-public class TestUpdatePostService extends TestFactory {
+public class UnitTestUpdatePostService extends UnitTestFactory {
 
     @Test
     @DisplayName("it should to be able to update a post if exist")

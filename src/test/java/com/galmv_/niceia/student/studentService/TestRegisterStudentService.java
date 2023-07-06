@@ -1,6 +1,6 @@
 package com.galmv_.niceia.student.studentService;
 
-import com.galmv_.niceia.TestFactory;
+import com.galmv_.niceia.UnitTestFactory;
 import com.galmv_.niceia.auth.AuthenticationResponse;
 import com.galmv_.niceia.auth.AuthenticationService;
 import com.galmv_.niceia.auth.RegisterRequest;
@@ -12,7 +12,7 @@ import org.junit.Test;
 import org.junit.jupiter.api.DisplayName;
 import org.springframework.beans.factory.annotation.Autowired;
 
-public class TestRegisterStudentService extends TestFactory {
+public class TestRegisterStudentService extends UnitTestFactory {
 
     @Autowired
     private AuthenticationService authenticationService;

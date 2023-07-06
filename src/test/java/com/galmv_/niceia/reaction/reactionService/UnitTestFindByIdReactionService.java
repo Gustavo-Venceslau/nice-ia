@@ -1,7 +1,6 @@
 package com.galmv_.niceia.reaction.reactionService;
 
-import com.galmv_.niceia.TestFactory;
-import com.galmv_.niceia.reaction.Reaction;
+import com.galmv_.niceia.UnitTestFactory;
 import com.galmv_.niceia.reaction.exceptions.ReactionNotFoundedException;
 import org.junit.Assert;
 import org.junit.Test;
@@ -9,7 +8,7 @@ import org.junit.jupiter.api.DisplayName;
 
 import java.util.UUID;
 
-public class TestFindByIdReactionService extends TestFactory {
+public class UnitTestFindByIdReactionService extends UnitTestFactory {
 
     @Test
     @DisplayName("should to be possible to find a reaction by id")

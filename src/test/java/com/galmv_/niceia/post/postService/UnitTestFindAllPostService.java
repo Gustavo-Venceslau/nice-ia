@@ -1,6 +1,6 @@
 package com.galmv_.niceia.post.postService;
 
-import com.galmv_.niceia.TestFactory;
+import com.galmv_.niceia.UnitTestFactory;
 import com.galmv_.niceia.post.Post;
 import com.galmv_.niceia.post.exceptions.PostNotFoundedException;
 import org.junit.Assert;
@@ -9,7 +9,7 @@ import org.junit.jupiter.api.DisplayName;
 
 import java.util.List;
 
-public class TestFindAllPostService extends TestFactory {
+public class UnitTestFindAllPostService extends UnitTestFactory {
 
     @Test
     @DisplayName("it should be able to find all posts")

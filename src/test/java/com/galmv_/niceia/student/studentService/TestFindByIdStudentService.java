@@ -1,6 +1,6 @@
 package com.galmv_.niceia.student.studentService;
 
-import com.galmv_.niceia.TestFactory;
+import com.galmv_.niceia.UnitTestFactory;
 import com.galmv_.niceia.student.Student;
 import com.galmv_.niceia.student.enums.StudentRole;
 import com.galmv_.niceia.student.exceptions.UserNotFoundException;
@@ -10,7 +10,7 @@ import org.junit.jupiter.api.DisplayName;
 
 import java.util.UUID;
 
-public class TestFindByIdStudentService extends TestFactory {
+public class TestFindByIdStudentService extends UnitTestFactory {
 
     @Test
     @DisplayName("it should able to find a user by id if the user exists!")

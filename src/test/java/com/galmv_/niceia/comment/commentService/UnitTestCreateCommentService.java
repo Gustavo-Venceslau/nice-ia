@@ -1,6 +1,6 @@
 package com.galmv_.niceia.comment.commentService;
 
-import com.galmv_.niceia.TestFactory;
+import com.galmv_.niceia.UnitTestFactory;
 import com.galmv_.niceia.comment.Comment;
 import com.galmv_.niceia.comment.CommentDTO;
 import com.galmv_.niceia.comment.exceptions.CommentIsEmptyException;
@@ -8,7 +8,7 @@ import org.junit.Assert;
 import org.junit.Test;
 import org.junit.jupiter.api.DisplayName;
 
-public class TestCreateCommentService extends TestFactory {
+public class UnitTestCreateCommentService extends UnitTestFactory {
 
     @Test
     @DisplayName("should to be able to create a comment")

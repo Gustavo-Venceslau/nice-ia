@@ -3,12 +3,11 @@ package com.galmv_.niceia.student;
 import com.galmv_.niceia.student.exceptions.UserNotFoundException;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.HashSet;
 import java.util.Set;
+import java.util.UUID;
 
 @RestController
 @RequestMapping("/student")
@@ -29,6 +28,48 @@ public class StudentController {
             )).toList());
 
             return ResponseEntity.ok().body(studentDTOS);
+        }
+        catch (UserNotFoundException e){
+            System.out.println("Exception: " + e);
+
+            return ResponseEntity.notFound().build();
+        }
+    }
+
+    @GetMapping(value = "/{id}")
+    public ResponseEntity<Student> findById(@PathVariable("id") UUID id){
+        try {
+            Student student = this.service.findById(id);
+
+            return ResponseEntity.ok().body(student);
+        }
+        catch (UserNotFoundException e){
+            System.out.println("Exception: " + e);
+
+            return ResponseEntity.notFound().build();
+        }
+    }
+
+    @PutMapping(value = "/{id}")
+    public ResponseEntity<Void> update(@PathVariable("id") UUID id, @RequestBody StudentDTO studentNewData){
+        try {
+            this.service.update(id, studentNewData);
+
+            return ResponseEntity.noContent().build();
+        }
+        catch (UserNotFoundException e){
+            System.out.println("Exception :" + e);
+
+            return ResponseEntity.notFound().build();
+        }
+    }
+
+    @DeleteMapping(value = "/{id}")
+    public ResponseEntity<Void> delete(@PathVariable UUID id){
+        try {
+            this.service.delete(id);
+
+            return ResponseEntity.noContent().build();
         }
         catch (UserNotFoundException e){
             System.out.println("Exception: " + e);

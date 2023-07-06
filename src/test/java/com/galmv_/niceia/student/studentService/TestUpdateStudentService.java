@@ -1,6 +1,6 @@
 package com.galmv_.niceia.student.studentService;
 
-import com.galmv_.niceia.TestFactory;
+import com.galmv_.niceia.UnitTestFactory;
 import com.galmv_.niceia.student.StudentDTO;
 import com.galmv_.niceia.student.Student;
 import com.galmv_.niceia.student.enums.StudentRole;
@@ -13,7 +13,7 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 
 import java.util.UUID;
 
-public class TestUpdateStudentService extends TestFactory {
+public class TestUpdateStudentService extends UnitTestFactory {
 
     @Autowired
     private PasswordEncoder passwordEncoder;

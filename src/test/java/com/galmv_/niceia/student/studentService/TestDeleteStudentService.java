@@ -1,6 +1,6 @@
 package com.galmv_.niceia.student.studentService;
 
-import com.galmv_.niceia.TestFactory;
+import com.galmv_.niceia.UnitTestFactory;
 import com.galmv_.niceia.student.Student;
 import com.galmv_.niceia.student.enums.StudentRole;
 import com.galmv_.niceia.student.exceptions.UserNotFoundException;
@@ -12,7 +12,7 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 
 import java.util.UUID;
 
-public class TestDeleteStudentService extends TestFactory {
+public class TestDeleteStudentService extends UnitTestFactory {
 
     @Autowired
     private PasswordEncoder passwordEncoder;

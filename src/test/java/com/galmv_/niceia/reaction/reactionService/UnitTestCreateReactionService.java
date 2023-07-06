@@ -1,6 +1,6 @@
 package com.galmv_.niceia.reaction.reactionService;
 
-import com.galmv_.niceia.TestFactory;
+import com.galmv_.niceia.UnitTestFactory;
 import com.galmv_.niceia.reaction.Enums.ComponentType;
 import com.galmv_.niceia.reaction.Enums.Type;
 import com.galmv_.niceia.reaction.Reaction;
@@ -12,7 +12,7 @@ import org.junit.jupiter.api.DisplayName;
 
 import java.util.UUID;
 
-public class TestCreateReactionService extends TestFactory {
+public class UnitTestCreateReactionService extends UnitTestFactory {
 
     @Test
     @DisplayName("should to be possible to create a new reaction")

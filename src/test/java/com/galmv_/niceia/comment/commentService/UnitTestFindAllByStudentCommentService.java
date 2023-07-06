@@ -1,6 +1,6 @@
 package com.galmv_.niceia.comment.commentService;
 
-import com.galmv_.niceia.TestFactory;
+import com.galmv_.niceia.UnitTestFactory;
 import com.galmv_.niceia.comment.Comment;
 import com.galmv_.niceia.student.exceptions.UserNotFoundException;
 import org.junit.Assert;
@@ -9,7 +9,7 @@ import org.junit.jupiter.api.DisplayName;
 
 import java.util.List;
 
-public class TestFindAllByStudentCommentService extends TestFactory {
+public class UnitTestFindAllByStudentCommentService extends UnitTestFactory {
 
     @Test
     @DisplayName("should to be possible to find all comments")

@@ -1,6 +1,6 @@
 package com.galmv_.niceia.comment.commentService;
 
-import com.galmv_.niceia.TestFactory;
+import com.galmv_.niceia.UnitTestFactory;
 import com.galmv_.niceia.comment.Comment;
 import com.galmv_.niceia.comment.exceptions.CommentNotFoundException;
 import org.junit.Assert;
@@ -9,7 +9,7 @@ import org.junit.jupiter.api.DisplayName;
 
 import java.util.UUID;
 
-public class TestDeleteCommentService extends TestFactory {
+public class UnitTestDeleteCommentService extends UnitTestFactory {
 
     @Test
     @DisplayName("should to be able to delete a comment if this one exists")
