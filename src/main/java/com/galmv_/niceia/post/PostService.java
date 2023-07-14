@@ -1,6 +1,12 @@
 package com.galmv_.niceia.post;
 
+import com.galmv_.niceia.comment.CommentRepository;
+import com.galmv_.niceia.config.JwtService;
 import com.galmv_.niceia.post.exceptions.PostNotFoundedException;
+import com.galmv_.niceia.student.Student;
+import com.galmv_.niceia.student.StudentRepository;
+import com.galmv_.niceia.student.exceptions.UserNotFoundException;
+import jakarta.transaction.Transactional;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
@@ -13,6 +19,12 @@ import java.util.UUID;
 public class PostService {
 
     private final PostRepository repository;
+
+    private final StudentRepository studentRepository;
+
+    private final CommentRepository commentRepository;
+
+    private final JwtService jwtService;
 
     public List<Post> findAll() {
         List<Post> posts = this.repository.findAll();
@@ -34,8 +46,28 @@ public class PostService {
         return post.get();
     }
 
-    public Post create(Post post){
-        return this.repository.save(post);
+    public Post create(PostDTO post, String token){
+        Student student = findUserToCretePost(token);
+
+        Post postToSave = Post.builder()
+                .title(post.title())
+                .imageURL(post.imageURL())
+                .student(student)
+                .build();
+
+        return this.repository.save(postToSave);
+    }
+    private Student findUserToCretePost(String token){
+        String jwtTokenFormatted = token.split(" ")[1].trim();
+
+        String username = jwtService.extractUsername(jwtTokenFormatted);
+        Optional<Student> optionalStudent = studentRepository.findByEmail(username);
+
+        if(optionalStudent.isEmpty()){
+            throw new UserNotFoundException("User not found to create a post");
+        }
+
+        return optionalStudent.get();
     }
 
     public void update(UUID id, PostDTO postNewData) {
@@ -51,6 +83,7 @@ public class PostService {
         postToUpdate.setImageURL(postNewData.imageURL());
     }
 
+    @Transactional
     public void delete(UUID id) {
         Post postToDelete = findById(id);
 
@@ -58,6 +91,7 @@ public class PostService {
             throw new PostNotFoundedException("post not founded");
         }
 
+        this.commentRepository.deleteAllByPost(postToDelete);
         this.repository.delete(postToDelete);
     }
 }

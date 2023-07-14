@@ -11,4 +11,5 @@ import java.util.UUID;
 public interface ReactionRepository extends JpaRepository<Reaction, UUID> {
 
     List<Reaction> findAllByStudent(Student student);
+    void deleteAllByStudent(Student student);
 }

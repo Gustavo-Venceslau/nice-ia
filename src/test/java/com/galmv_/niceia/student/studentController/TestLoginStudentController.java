@@ -15,9 +15,7 @@ import org.springframework.test.web.servlet.result.MockMvcResultMatchers;
 public class TestLoginStudentController extends IntegrationTestFactory {
 
     @Autowired
-    private JwtService jwtService;
-
-    ObjectMapper mapper = new ObjectMapper();
+    ObjectMapper mapper;
 
     @Test
     @DisplayName("should to be able to login if student is exists")
@@ -32,20 +30,21 @@ public class TestLoginStudentController extends IntegrationTestFactory {
                 .content(studentCredentialsRequest)
         )
                 .andExpect(MockMvcResultMatchers.status().isOk())
+                .andExpect(MockMvcResultMatchers.jsonPath("$.token").isNotEmpty())
                 .andDo(MockMvcResultHandlers.print());
     }
 
     @Test
-    @DisplayName("should to be able to login if student is exists")
+    @DisplayName("should not to be able to login if student not exists")
     public void testFailLogin() throws Exception {
-        AuthenticationRequest studentCredentials = new AuthenticationRequest("gustavo@mail.com", "12");
+        AuthenticationRequest studentCredentials2 = new AuthenticationRequest("gustavo@mail.com", "12");
 
-        String studentCredentialsRequest = mapper.writeValueAsString(studentCredentials);
+        String studentCredentialsRequestToFail = mapper.writeValueAsString(studentCredentials2);
 
         mockMvc.perform(MockMvcRequestBuilders.post("/login")
                         .contentType(MediaType.APPLICATION_JSON)
                         .characterEncoding("UTF-8")
-                        .content(studentCredentialsRequest)
+                        .content(studentCredentialsRequestToFail)
                 )
                 .andExpect(MockMvcResultMatchers.status().isForbidden())
                 .andDo(MockMvcResultHandlers.print());

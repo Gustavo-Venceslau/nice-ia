@@ -1,6 +1,10 @@
 package com.galmv_.niceia.student;
 
+import com.galmv_.niceia.comment.CommentRepository;
+import com.galmv_.niceia.post.PostRepository;
+import com.galmv_.niceia.reaction.ReactionRepository;
 import com.galmv_.niceia.student.exceptions.UserNotFoundException;
+import jakarta.transaction.Transactional;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
@@ -14,6 +18,9 @@ import java.util.UUID;
 public class StudentService {
 
     private final StudentRepository repository;
+    private final PostRepository postRepository;
+    private final CommentRepository commentRepository;
+    private final ReactionRepository reactionRepository;
 
     public Set<Student> findAll(){
         Set<Student> students = new HashSet<>(repository.findAll());
@@ -54,6 +61,7 @@ public class StudentService {
         studentToUpdate.setPassword(data.password());
     }
 
+    @Transactional
     public void delete(UUID id){
         Student student = findById(id);
 
@@ -61,6 +69,9 @@ public class StudentService {
             throw new UserNotFoundException("User not founded");
         }
 
+        this.reactionRepository.deleteAllByStudent(student);
+        this.commentRepository.deleteAllByStudent(student);
+        this.postRepository.deleteAllByStudent(student);
         this.repository.delete(student);
     }
 }

@@ -34,7 +34,7 @@ public class TestCreateStudentController extends IntegrationTestFactory {
     @Test
     @DisplayName("should not to be able to create a new student if this already exists")
     public void testFailCreate() throws Exception {
-        RegisterRequest newStudent = new RegisterRequest("Isabelle", "Venceslau", "gustavo@mail.com", "321");
+        RegisterRequest newStudent = new RegisterRequest("Isabelle", "Venceslau", "gustavodealmeida@gmail.com", "321");
 
         String studentRequest = objectMapper.writeValueAsString(newStudent);
 
