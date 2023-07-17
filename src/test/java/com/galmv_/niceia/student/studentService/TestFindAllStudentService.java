@@ -1,8 +1,8 @@
 package com.galmv_.niceia.student.studentService;
 
 import com.galmv_.niceia.UnitTestFactory;
-import com.galmv_.niceia.student.Student;
-import com.galmv_.niceia.student.exceptions.UserNotFoundException;
+import com.galmv_.niceia.domain.student.Student;
+import com.galmv_.niceia.domain.student.exceptions.UserNotFoundException;
 import org.junit.Assert;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.Test;

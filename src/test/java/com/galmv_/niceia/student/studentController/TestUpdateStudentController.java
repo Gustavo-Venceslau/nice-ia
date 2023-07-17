@@ -2,7 +2,7 @@ package com.galmv_.niceia.student.studentController;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.galmv_.niceia.IntegrationTestFactory;
-import com.galmv_.niceia.student.StudentDTO;
+import com.galmv_.niceia.domain.student.StudentDTO;
 import org.junit.Test;
 import org.junit.jupiter.api.DisplayName;
 import org.springframework.http.MediaType;

@@ -2,9 +2,9 @@ package com.galmv_.niceia.post.postController;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.galmv_.niceia.IntegrationTestFactory;
-import com.galmv_.niceia.post.Post;
-import com.galmv_.niceia.student.Student;
-import com.galmv_.niceia.student.enums.StudentRole;
+import com.galmv_.niceia.domain.post.Post;
+import com.galmv_.niceia.domain.student.Student;
+import com.galmv_.niceia.domain.student.enums.StudentRole;
 import org.junit.Test;
 import org.junit.jupiter.api.DisplayName;
 import org.springframework.http.MediaType;

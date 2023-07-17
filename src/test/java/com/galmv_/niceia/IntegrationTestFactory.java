@@ -1,20 +1,18 @@
 package com.galmv_.niceia;
 
-import com.galmv_.niceia.auth.AuthenticationRequest;
 import com.galmv_.niceia.auth.AuthenticationService;
 import com.galmv_.niceia.auth.RegisterRequest;
-import com.galmv_.niceia.comment.Comment;
-import com.galmv_.niceia.comment.CommentRepository;
+import com.galmv_.niceia.domain.comment.Comment;
+import com.galmv_.niceia.domain.comment.CommentRepository;
 import com.galmv_.niceia.config.JwtService;
-import com.galmv_.niceia.post.Post;
-import com.galmv_.niceia.post.PostRepository;
-import com.galmv_.niceia.reaction.Enums.ComponentType;
-import com.galmv_.niceia.reaction.Enums.Type;
-import com.galmv_.niceia.reaction.Reaction;
-import com.galmv_.niceia.reaction.ReactionRepository;
-import com.galmv_.niceia.student.Student;
-import com.galmv_.niceia.student.StudentRepository;
-import com.galmv_.niceia.student.enums.StudentRole;
+import com.galmv_.niceia.domain.post.Post;
+import com.galmv_.niceia.domain.post.PostRepository;
+import com.galmv_.niceia.domain.reaction.Enums.Type;
+import com.galmv_.niceia.domain.reaction.Reaction;
+import com.galmv_.niceia.domain.reaction.ReactionRepository;
+import com.galmv_.niceia.domain.student.Student;
+import com.galmv_.niceia.domain.student.StudentRepository;
+import com.galmv_.niceia.domain.student.enums.StudentRole;
 import org.junit.After;
 import org.junit.Before;
 import org.junit.runner.RunWith;
@@ -31,13 +29,10 @@ import org.springframework.web.context.WebApplicationContext;
 @RunWith(SpringRunner.class)
 @AutoConfigureMockMvc(addFilters = false)
 public class IntegrationTestFactory {
-
-    @Autowired
-    private WebApplicationContext wac;
-
     @Autowired
     protected JwtService jwtService;
 
+    @Autowired
     protected MockMvc mockMvc;
 
     @Autowired
@@ -56,7 +51,7 @@ public class IntegrationTestFactory {
     protected RegisterRequest studentAuth = new RegisterRequest("venceslau", "ven","gustavovences@mail.com", "321");
     protected Post post = new Post(null, "Good Morning", "ImageURL", student);
     protected Comment comment = new Comment(null, "Good way, guys!", post, student);
-    protected Reaction reaction = new Reaction(null, Type.LIKE, ComponentType.POST, post.getId(), student);
+    protected Reaction reaction = new Reaction(null, Type.LIKE, post, comment, student);
 
     @Before
     public void setUp(){
@@ -64,8 +59,6 @@ public class IntegrationTestFactory {
         postRepository.save(post);
         commentRepository.save(comment);
         reactionRepository.save(reaction);
-
-        mockMvc = MockMvcBuilders.webAppContextSetup(this.wac).build();
     }
 
     @After

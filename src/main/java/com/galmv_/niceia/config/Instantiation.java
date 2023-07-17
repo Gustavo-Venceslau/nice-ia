@@ -2,24 +2,23 @@ package com.galmv_.niceia.config;
 
 import com.galmv_.niceia.auth.AuthenticationService;
 import com.galmv_.niceia.auth.RegisterRequest;
-import com.galmv_.niceia.comment.Comment;
-import com.galmv_.niceia.comment.CommentRepository;
-import com.galmv_.niceia.post.Post;
-import com.galmv_.niceia.post.PostRepository;
-import com.galmv_.niceia.reaction.Enums.ComponentType;
-import com.galmv_.niceia.reaction.Enums.Type;
-import com.galmv_.niceia.reaction.Reaction;
-import com.galmv_.niceia.reaction.ReactionRepository;
-import com.galmv_.niceia.student.Student;
-import com.galmv_.niceia.student.StudentRepository;
-import com.galmv_.niceia.student.enums.StudentRole;
+import com.galmv_.niceia.domain.comment.Comment;
+import com.galmv_.niceia.domain.comment.CommentRepository;
+import com.galmv_.niceia.domain.post.Post;
+import com.galmv_.niceia.domain.post.PostRepository;
+import com.galmv_.niceia.domain.reaction.Enums.ComponentType;
+import com.galmv_.niceia.domain.reaction.Enums.Type;
+import com.galmv_.niceia.domain.reaction.Reaction;
+import com.galmv_.niceia.domain.reaction.ReactionRepository;
+import com.galmv_.niceia.domain.student.Student;
+import com.galmv_.niceia.domain.student.StudentRepository;
+import com.galmv_.niceia.domain.student.enums.StudentRole;
 import lombok.RequiredArgsConstructor;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.security.crypto.password.PasswordEncoder;
 
 import java.util.List;
-import java.util.UUID;
 
 @Configuration
 @RequiredArgsConstructor
@@ -66,8 +65,8 @@ public class Instantiation implements CommandLineRunner {
 
         this.commentRepository.saveAll(List.of(comment1, comment2));
 
-        Reaction reaction1 = new Reaction(null, Type.LIKE, ComponentType.POST, post1.getId(), student4);
-        Reaction reaction2 = new Reaction(null, Type.LOVED, ComponentType.COMMENT, comment1.getId(), student5);
+        Reaction reaction1 = new Reaction(null, Type.LIKE, post1, comment1, student4);
+        Reaction reaction2 = new Reaction(null, Type.LOVED, post1, comment1, student5);
 
         this.reactionRepository.saveAll(List.of(reaction1, reaction2));
     }

@@ -1,20 +1,20 @@
 package com.galmv_.niceia;
 
-import com.galmv_.niceia.comment.Comment;
-import com.galmv_.niceia.comment.CommentRepository;
-import com.galmv_.niceia.comment.CommentService;
-import com.galmv_.niceia.post.Post;
-import com.galmv_.niceia.post.PostRepository;
-import com.galmv_.niceia.post.PostService;
-import com.galmv_.niceia.reaction.Enums.ComponentType;
-import com.galmv_.niceia.reaction.Enums.Type;
-import com.galmv_.niceia.reaction.Reaction;
-import com.galmv_.niceia.reaction.ReactionRepository;
-import com.galmv_.niceia.reaction.ReactionService;
-import com.galmv_.niceia.student.Student;
-import com.galmv_.niceia.student.StudentRepository;
-import com.galmv_.niceia.student.StudentService;
-import com.galmv_.niceia.student.enums.StudentRole;
+import com.galmv_.niceia.domain.comment.Comment;
+import com.galmv_.niceia.domain.comment.CommentRepository;
+import com.galmv_.niceia.domain.comment.CommentService;
+import com.galmv_.niceia.domain.post.Post;
+import com.galmv_.niceia.domain.post.PostRepository;
+import com.galmv_.niceia.domain.post.PostService;
+import com.galmv_.niceia.domain.reaction.Enums.ComponentType;
+import com.galmv_.niceia.domain.reaction.Enums.Type;
+import com.galmv_.niceia.domain.reaction.Reaction;
+import com.galmv_.niceia.domain.reaction.ReactionRepository;
+import com.galmv_.niceia.domain.reaction.ReactionService;
+import com.galmv_.niceia.domain.student.Student;
+import com.galmv_.niceia.domain.student.StudentRepository;
+import com.galmv_.niceia.domain.student.StudentService;
+import com.galmv_.niceia.domain.student.enums.StudentRole;
 import jakarta.annotation.Resource;
 import org.junit.After;
 import org.junit.Before;
@@ -50,7 +50,7 @@ public class UnitTestFactory {
     protected Student student = new Student(null, "Gustavo", "de Almeida", "gustavodealmeida@gmail.com", "1234", StudentRole.USER);
     protected Post post = new Post(null, "Good Morning", "ImageURL", student);
     protected Comment comment = new Comment(null, "Good way, guys!", post, student);
-    protected Reaction reaction = new Reaction(null, Type.LIKE, ComponentType.POST, post.getId(), student);
+    protected Reaction reaction = new Reaction(null, Type.LIKE, post, comment, student);
 
     @Before
     public void setUp(){

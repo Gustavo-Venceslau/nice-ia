@@ -1,8 +1,8 @@
 package com.galmv_.niceia.comment.commentService;
 
 import com.galmv_.niceia.UnitTestFactory;
-import com.galmv_.niceia.comment.Comment;
-import com.galmv_.niceia.comment.exceptions.CommentNotFoundException;
+import com.galmv_.niceia.domain.comment.Comment;
+import com.galmv_.niceia.domain.comment.exceptions.CommentNotFoundException;
 import org.junit.Assert;
 import org.junit.Test;
 import org.junit.jupiter.api.DisplayName;

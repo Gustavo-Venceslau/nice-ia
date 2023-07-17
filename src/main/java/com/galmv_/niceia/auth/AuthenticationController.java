@@ -1,6 +1,6 @@
 package com.galmv_.niceia.auth;
 
-import com.galmv_.niceia.student.exceptions.UserAlreadyExistsException;
+import com.galmv_.niceia.domain.student.exceptions.UserAlreadyExistsException;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;

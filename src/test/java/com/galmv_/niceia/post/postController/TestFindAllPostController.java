@@ -23,6 +23,7 @@ public class TestFindAllPostController extends IntegrationTestFactory {
     @Test
     @DisplayName("should not to be able to find all posts in /post if they don't exists")
     public void testFailFindAll() throws Exception{
+        reactionRepository.deleteAll();
         commentRepository.deleteAll();
         postRepository.deleteAll();
 

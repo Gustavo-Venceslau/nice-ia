@@ -1,6 +1,6 @@
 package com.galmv_.niceia.config;
 
-import com.galmv_.niceia.student.StudentRepository;
+import com.galmv_.niceia.domain.student.StudentRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;

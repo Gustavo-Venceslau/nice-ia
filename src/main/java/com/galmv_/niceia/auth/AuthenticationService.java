@@ -1,12 +1,11 @@
 package com.galmv_.niceia.auth;
 
 import com.galmv_.niceia.config.JwtService;
-import com.galmv_.niceia.student.StudentRepository;
-import com.galmv_.niceia.student.Student;
-import com.galmv_.niceia.student.enums.StudentRole;
-import com.galmv_.niceia.student.exceptions.UserAlreadyExistsException;
+import com.galmv_.niceia.domain.student.StudentRepository;
+import com.galmv_.niceia.domain.student.Student;
+import com.galmv_.niceia.domain.student.enums.StudentRole;
+import com.galmv_.niceia.domain.student.exceptions.UserAlreadyExistsException;
 import lombok.RequiredArgsConstructor;
-import org.springframework.http.ResponseEntity;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.crypto.password.PasswordEncoder;

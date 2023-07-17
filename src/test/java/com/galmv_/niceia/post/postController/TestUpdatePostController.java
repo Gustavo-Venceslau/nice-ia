@@ -2,7 +2,7 @@ package com.galmv_.niceia.post.postController;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.galmv_.niceia.IntegrationTestFactory;
-import com.galmv_.niceia.post.PostDTO;
+import com.galmv_.niceia.domain.post.PostDTO;
 import org.junit.Test;
 import org.junit.jupiter.api.DisplayName;
 import org.springframework.http.MediaType;

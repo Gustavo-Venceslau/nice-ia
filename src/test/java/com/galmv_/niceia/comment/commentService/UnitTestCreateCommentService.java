@@ -1,9 +1,9 @@
 package com.galmv_.niceia.comment.commentService;
 
 import com.galmv_.niceia.UnitTestFactory;
-import com.galmv_.niceia.comment.Comment;
-import com.galmv_.niceia.comment.CommentDTO;
-import com.galmv_.niceia.comment.exceptions.CommentIsEmptyException;
+import com.galmv_.niceia.domain.comment.Comment;
+import com.galmv_.niceia.domain.comment.CommentDTO;
+import com.galmv_.niceia.domain.comment.exceptions.CommentIsEmptyException;
 import org.junit.Assert;
 import org.junit.Test;
 import org.junit.jupiter.api.DisplayName;
