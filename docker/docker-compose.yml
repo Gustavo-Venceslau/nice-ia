@@ -11,7 +11,7 @@ services:
       MYSQL_ROOT_PASSWORD: "123"
   app:
     build:
-      context: .
+      context: ..
       dockerfile: Dockerfile_App
     command: java -jar /app.jar
     container_name: spring-container
@@ -27,7 +27,7 @@ services:
       - db
   jenkins:
     build:
-      context: .
+      context: ..
       dockerfile: Dockerfile_Jenkins
     container_name: jenkins
     ports:
