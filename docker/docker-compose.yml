@@ -9,9 +9,11 @@ services:
       - "3306:3306"
     environment:
       MYSQL_ROOT_PASSWORD: "123"
+    volumes:
+      - db_volume:/var/mysql
   app:
     build:
-      context: ..
+      context: ../docker
       dockerfile: Dockerfile_App
     command: java -jar /app.jar
     container_name: spring-container
@@ -27,9 +29,11 @@ services:
       - db
   jenkins:
     build:
-      context: ..
+      context: ../docker/
       dockerfile: Dockerfile_Jenkins
     container_name: jenkins
     ports:
       - "8080:8080"
     restart: always
+volumes:
+  db_volume:

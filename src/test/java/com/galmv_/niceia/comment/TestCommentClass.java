@@ -5,7 +5,7 @@ import org.junit.Assert;
 import org.junit.Test;
 import org.junit.jupiter.api.DisplayName;
 
-public class UnitTestCommentClass extends UnitTestFactory {
+public class TestCommentClass extends UnitTestFactory {
 
     @Test
     @DisplayName("should to be able to instance a new comment")

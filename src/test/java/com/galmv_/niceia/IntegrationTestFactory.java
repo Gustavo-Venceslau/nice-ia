@@ -44,11 +44,7 @@ public class IntegrationTestFactory {
     @Autowired
     protected ReactionRepository reactionRepository;
 
-    @Autowired
-    protected AuthenticationService authenticationService;
-
     protected Student student = new Student(null, "Gustavo", "de Almeida", "gustavodealmeida@gmail.com", "1234", StudentRole.USER);
-    protected RegisterRequest studentAuth = new RegisterRequest("venceslau", "ven","gustavovences@mail.com", "321");
     protected Post post = new Post(null, "Good Morning", "ImageURL", student);
     protected Comment comment = new Comment(null, "Good way, guys!", post, student);
     protected Reaction reaction = new Reaction(null, Type.LIKE, post, comment, student);
@@ -67,7 +63,5 @@ public class IntegrationTestFactory {
         commentRepository.delete(comment);
         postRepository.delete(post);
         studentRepository.delete(student);
-
-        Mockito.reset();
     }
 }

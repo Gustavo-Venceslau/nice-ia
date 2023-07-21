@@ -8,22 +8,23 @@ import org.junit.Test;
 import org.junit.jupiter.api.DisplayName;
 
 import java.util.List;
+import java.util.UUID;
 
-public class UnitTestFindAllByStudentCommentService extends UnitTestFactory {
+public class TestFindAllByStudentCommentService extends UnitTestFactory {
 
     @Test
     @DisplayName("should to be possible to find all comments")
     public void testSuccessFindAllByStudent(){
-        List<Comment> commentsList = this.commentService.findAllByStudent(student.getEmail());
+        List<Comment> commentsList = this.commentService.findAllByStudent(student.getId());
 
         Assert.assertFalse(commentsList.isEmpty());
-
     }
 
     @Test
     @DisplayName("must not be able to find All student comments if the student does not exist")
     public void testFailsWithInvalidStudent(){
-        Assert.assertThrows(UserNotFoundException.class, () -> this.commentService.findAllByStudent(null));
+        Assert.assertThrows(UserNotFoundException.class, () ->
+                this.commentService.findAllByStudent(new UUID(0, 0)));
     }
 
 }

@@ -5,7 +5,7 @@ import org.junit.Assert;
 import org.junit.Test;
 import org.junit.jupiter.api.DisplayName;
 
-public class UnitTestClassPost extends UnitTestFactory {
+public class TestClassPost extends UnitTestFactory {
 
     @Test
     @DisplayName("it should be able to instance a new Post object")

@@ -9,7 +9,7 @@ import org.junit.jupiter.api.DisplayName;
 
 import java.util.UUID;
 
-public class UnitTestDeleteCommentService extends UnitTestFactory {
+public class TestDeleteCommentService extends UnitTestFactory {
 
     @Test
     @DisplayName("should to be able to delete a comment if this one exists")

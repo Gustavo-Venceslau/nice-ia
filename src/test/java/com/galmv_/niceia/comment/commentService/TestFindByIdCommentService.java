@@ -9,7 +9,7 @@ import org.junit.jupiter.api.DisplayName;
 
 import java.util.UUID;
 
-public class UnitTestFindByIdCommentService extends UnitTestFactory {
+public class TestFindByIdCommentService extends UnitTestFactory {
 
     @Test
     @DisplayName("should to be possible to find a comment by id if exists!")
