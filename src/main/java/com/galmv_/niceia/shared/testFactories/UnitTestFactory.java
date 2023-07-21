@@ -1,48 +1,51 @@
-package com.galmv_.niceia;
+package com.galmv_.niceia.shared.testFactories;
 
-import com.galmv_.niceia.auth.AuthenticationService;
-import com.galmv_.niceia.auth.RegisterRequest;
 import com.galmv_.niceia.domain.comment.Comment;
 import com.galmv_.niceia.domain.comment.CommentRepository;
-import com.galmv_.niceia.config.JwtService;
+import com.galmv_.niceia.domain.comment.CommentService;
 import com.galmv_.niceia.domain.post.Post;
 import com.galmv_.niceia.domain.post.PostRepository;
+import com.galmv_.niceia.domain.post.PostService;
+import com.galmv_.niceia.domain.reaction.Enums.ComponentType;
 import com.galmv_.niceia.domain.reaction.Enums.Type;
 import com.galmv_.niceia.domain.reaction.Reaction;
 import com.galmv_.niceia.domain.reaction.ReactionRepository;
+import com.galmv_.niceia.domain.reaction.ReactionService;
 import com.galmv_.niceia.domain.student.Student;
 import com.galmv_.niceia.domain.student.StudentRepository;
+import com.galmv_.niceia.domain.student.StudentService;
 import com.galmv_.niceia.domain.student.enums.StudentRole;
+import jakarta.annotation.Resource;
 import org.junit.After;
 import org.junit.Before;
 import org.junit.runner.RunWith;
-import org.mockito.Mockito;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.boot.test.autoconfigure.web.servlet.AutoConfigureMockMvc;
 import org.springframework.boot.test.context.SpringBootTest;
+import org.springframework.context.annotation.Configuration;
 import org.springframework.test.context.junit4.SpringRunner;
-import org.springframework.test.web.servlet.MockMvc;
-import org.springframework.test.web.servlet.setup.MockMvcBuilders;
-import org.springframework.web.context.WebApplicationContext;
 
 @SpringBootTest
+@Configuration
 @RunWith(SpringRunner.class)
-@AutoConfigureMockMvc(addFilters = false)
-public class IntegrationTestFactory {
-    @Autowired
-    protected JwtService jwtService;
+public class UnitTestFactory {
 
-    @Autowired
-    protected MockMvc mockMvc;
-
-    @Autowired
+    @Resource
     protected StudentRepository studentRepository;
-    @Autowired
+    @Resource
     protected PostRepository postRepository;
-    @Autowired
+    @Resource
     protected CommentRepository commentRepository;
-    @Autowired
+    @Resource
     protected ReactionRepository reactionRepository;
+
+    @Autowired
+    protected StudentService studentService;
+    @Autowired
+    protected PostService postService;
+    @Autowired
+    protected CommentService commentService;
+    @Autowired
+    protected ReactionService reactionService;
 
     protected Student student = new Student(null, "Gustavo", "de Almeida", "gustavodealmeida@gmail.com", "1234", StudentRole.USER);
     protected Post post = new Post(null, "Good Morning", "ImageURL", student);
@@ -59,9 +62,9 @@ public class IntegrationTestFactory {
 
     @After
     public void setUpAfter(){
-        reactionRepository.delete(reaction);
-        commentRepository.delete(comment);
-        postRepository.delete(post);
-        studentRepository.delete(student);
+        reactionRepository.deleteAll();
+        commentRepository.deleteAll();
+        postRepository.deleteAll();
+        studentRepository.deleteAll();
     }
 }

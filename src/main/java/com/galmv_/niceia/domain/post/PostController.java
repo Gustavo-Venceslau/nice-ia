@@ -3,6 +3,7 @@ package com.galmv_.niceia.domain.post;
 import com.galmv_.niceia.domain.post.exceptions.PostNotFoundedException;
 import com.galmv_.niceia.domain.student.exceptions.UserNotFoundException;
 import lombok.RequiredArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
@@ -14,6 +15,7 @@ import java.util.UUID;
 @RestController
 @RequestMapping("/post")
 @RequiredArgsConstructor
+@Slf4j
 public class PostController {
 
     private final PostService postService;
@@ -26,7 +28,7 @@ public class PostController {
             return ResponseEntity.ok().body(posts);
         }
         catch (PostNotFoundedException e){
-            System.out.println("Exception: " + e);
+            log.info("Exception: " + e);
 
             return ResponseEntity.notFound().build();
         }
@@ -40,7 +42,7 @@ public class PostController {
             return ResponseEntity.ok().body(post);
         }
         catch (PostNotFoundedException e){
-            System.out.println("Exception: " + e);
+            log.info("Exception: " + e);
 
             return ResponseEntity.notFound().build();
         }
@@ -54,7 +56,7 @@ public class PostController {
             return ResponseEntity.ok().body(postsByStudent);
         }
         catch (UserNotFoundException e){
-            System.out.println("Exception: " + e);
+            log.info("Exception: " + e);
 
             return ResponseEntity.notFound().build();
         }
@@ -70,7 +72,7 @@ public class PostController {
             return ResponseEntity.created(uri).body(post1);
         }
         catch (UserNotFoundException e){
-            System.out.println("Exception: " + e);
+            log.info("Exception: " + e);
 
             return ResponseEntity.notFound().build();
         }
@@ -84,7 +86,7 @@ public class PostController {
             return ResponseEntity.noContent().build();
         }
         catch (PostNotFoundedException e){
-            System.out.println("Exception: " + e);
+            log.info("Exception: " + e);
 
             return ResponseEntity.notFound().build();
         }
@@ -98,7 +100,7 @@ public class PostController {
             return ResponseEntity.noContent().build();
         }
         catch (PostNotFoundedException e){
-            System.out.println("Exception: " + e);
+            log.info("Exception: " + e);
 
             return ResponseEntity.notFound().build();
         }

@@ -1,9 +1,8 @@
 package com.galmv_.niceia.student.studentController;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
-import com.galmv_.niceia.IntegrationTestFactory;
+import com.galmv_.niceia.shared.testFactories.IntegrationTestFactory;
 import com.galmv_.niceia.auth.AuthenticationRequest;
-import com.galmv_.niceia.config.JwtService;
 import org.junit.Test;
 import org.junit.jupiter.api.DisplayName;
 import org.springframework.beans.factory.annotation.Autowired;

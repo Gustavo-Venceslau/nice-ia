@@ -1,7 +1,7 @@
 package com.galmv_.niceia.comment.commentController;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
-import com.galmv_.niceia.IntegrationTestFactory;
+import com.galmv_.niceia.shared.testFactories.IntegrationTestFactory;
 import com.galmv_.niceia.domain.comment.dtos.CreateAndUpdateCommentDTO;
 import org.junit.Test;
 import org.junit.jupiter.api.DisplayName;

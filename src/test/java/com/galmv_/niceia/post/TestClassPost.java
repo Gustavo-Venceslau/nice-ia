@@ -1,6 +1,6 @@
 package com.galmv_.niceia.post;
 
-import com.galmv_.niceia.UnitTestFactory;
+import com.galmv_.niceia.shared.testFactories.UnitTestFactory;
 import org.junit.Assert;
 import org.junit.Test;
 import org.junit.jupiter.api.DisplayName;

@@ -1,6 +1,7 @@
 package com.galmv_.niceia.domain.reaction;
 
 import com.galmv_.niceia.domain.comment.Comment;
+import com.galmv_.niceia.domain.comment.CommentRepository;
 import com.galmv_.niceia.domain.comment.CommentService;
 import com.galmv_.niceia.domain.post.Post;
 import com.galmv_.niceia.domain.post.PostRepository;
@@ -9,7 +10,9 @@ import com.galmv_.niceia.domain.post.exceptions.PostNotFoundedException;
 import com.galmv_.niceia.domain.reaction.Enums.Type;
 import com.galmv_.niceia.domain.reaction.exceptions.ReactionNotFoundedException;
 import com.galmv_.niceia.domain.student.Student;
+import com.galmv_.niceia.domain.student.StudentRepository;
 import com.galmv_.niceia.domain.student.StudentService;
+import com.galmv_.niceia.shared.exception.EntityNotFoundException;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
@@ -23,9 +26,13 @@ public class ReactionService {
 
     private final ReactionRepository reactionRepository;
 
-    private final PostService postService;
-
     private final PostRepository postRepository;
+
+    private final CommentRepository commentRepository;
+
+    private final StudentRepository studentRepository;
+
+    private final PostService postService;
 
     private final CommentService commentService;
 
@@ -60,13 +67,15 @@ public class ReactionService {
     }
 
     public Reaction create(ReactionDTO reactionDTO) {
-        Optional<Post> optionalReaction = this.postRepository.findById(reactionDTO.post().getId());
+        Optional<Post> optionalReaction = this.postRepository.findById(reactionDTO.post());
+        Optional<Comment> optionalComment = this.commentRepository.findById(reactionDTO.comment());
+        Optional<Student> optionalStudent = this.studentRepository.findById(reactionDTO.student());
 
-        if(optionalReaction.isEmpty()){
+        if(optionalReaction.isEmpty() || optionalComment.isEmpty() || optionalStudent.isEmpty()){
             throw new PostNotFoundedException("Post Not Founded");
         }
 
-        Reaction reaction = new Reaction(null, reactionDTO.type(), reactionDTO.post(), reactionDTO.comment(), reactionDTO.student());
+        Reaction reaction = new Reaction(null, reactionDTO.type(), optionalReaction.get(), optionalComment.get(), optionalStudent.get());
 
         return this.reactionRepository.save(reaction);
     }

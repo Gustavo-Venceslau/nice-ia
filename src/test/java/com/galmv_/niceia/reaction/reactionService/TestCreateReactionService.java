@@ -1,6 +1,6 @@
 package com.galmv_.niceia.reaction.reactionService;
 
-import com.galmv_.niceia.UnitTestFactory;
+import com.galmv_.niceia.shared.testFactories.UnitTestFactory;
 import com.galmv_.niceia.domain.post.Post;
 import com.galmv_.niceia.domain.post.exceptions.PostNotFoundedException;
 import com.galmv_.niceia.domain.reaction.Enums.Type;
@@ -17,7 +17,7 @@ public class TestCreateReactionService extends UnitTestFactory {
     @Test
     @DisplayName("should to be possible to create a new reaction")
     public void testSuccessCreate(){
-        Reaction reaction1 = this.reactionService.create(new ReactionDTO(Type.LOVED, post, comment, student));
+        Reaction reaction1 = this.reactionService.create(new ReactionDTO(Type.LOVED, post.getId(), comment.getId(), student.getId()));
 
         Assert.assertNotNull(reactionService.findById(reaction1.getId()));
     }
@@ -28,6 +28,6 @@ public class TestCreateReactionService extends UnitTestFactory {
         Post newPost = new Post(new UUID(0, 0), "Good Afternoon", "", student);
 
         Assert.assertThrows(PostNotFoundedException.class, () ->
-                this.reactionService.create(new ReactionDTO(Type.LOVED, newPost, comment, student)));
+                this.reactionService.create(new ReactionDTO(Type.LOVED, newPost.getId(), comment.getId(), student.getId())));
     }
 }

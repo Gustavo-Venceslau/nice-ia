@@ -5,5 +5,7 @@ import com.galmv_.niceia.domain.post.Post;
 import com.galmv_.niceia.domain.reaction.Enums.Type;
 import com.galmv_.niceia.domain.student.Student;
 
-public record ReactionDTO(Type type, Post post, Comment comment, Student student){
+import java.util.UUID;
+
+public record ReactionDTO(Type type, UUID post, UUID comment, UUID student){
 }

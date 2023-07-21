@@ -1,6 +1,6 @@
 package com.galmv_.niceia.reaction.reactionService;
 
-import com.galmv_.niceia.UnitTestFactory;
+import com.galmv_.niceia.shared.testFactories.UnitTestFactory;
 import com.galmv_.niceia.domain.comment.exceptions.CommentNotFoundException;
 import com.galmv_.niceia.domain.reaction.Reaction;
 import org.junit.Assert;

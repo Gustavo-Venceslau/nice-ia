@@ -1,9 +1,9 @@
 package com.galmv_.niceia.reaction.reactionController;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
-import com.galmv_.niceia.IntegrationTestFactory;
+import com.galmv_.niceia.shared.testFactories.IntegrationTestFactory;
 import com.galmv_.niceia.domain.reaction.Enums.Type;
-import com.galmv_.niceia.domain.reaction.Reaction;
+import com.galmv_.niceia.domain.reaction.ReactionDTO;
 import org.junit.Test;
 import org.junit.jupiter.api.DisplayName;
 import org.springframework.http.MediaType;
@@ -18,13 +18,7 @@ public class TestCreateReactionController extends IntegrationTestFactory {
     @Test
     @DisplayName("should to be able to create a reaction in /reaction")
     public void testSuccessCreate() throws Exception{
-        Reaction newReaction = Reaction
-                .builder()
-                .type(Type.LOVED)
-                .post(post)
-                .comment(comment)
-                .student(student)
-                .build();
+        ReactionDTO newReaction = new ReactionDTO(Type.LOVED, post.getId(), comment.getId(),student.getId());
 
         String newReactionRequest = mapper.writeValueAsString(newReaction);
 
@@ -34,7 +28,9 @@ public class TestCreateReactionController extends IntegrationTestFactory {
                 .content(newReactionRequest)
         )
                 .andExpect(MockMvcResultMatchers.status().isCreated())
-                .andExpect(MockMvcResultMatchers.jsonPath("$.type").value(Type.LOVED))
+                .andExpect(MockMvcResultMatchers.jsonPath("$.type").value("LOVED"))
                 .andDo(MockMvcResultHandlers.print());
+
+        this.reactionRepository.deleteAll();
     }
 }

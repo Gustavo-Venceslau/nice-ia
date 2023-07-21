@@ -1,6 +1,6 @@
 package com.galmv_.niceia.post.postService;
 
-import com.galmv_.niceia.UnitTestFactory;
+import com.galmv_.niceia.shared.testFactories.UnitTestFactory;
 import com.galmv_.niceia.domain.post.PostDTO;
 import com.galmv_.niceia.domain.post.exceptions.PostNotFoundedException;
 import org.junit.Assert;

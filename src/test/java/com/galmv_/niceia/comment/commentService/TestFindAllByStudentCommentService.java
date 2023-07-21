@@ -1,6 +1,6 @@
 package com.galmv_.niceia.comment.commentService;
 
-import com.galmv_.niceia.UnitTestFactory;
+import com.galmv_.niceia.shared.testFactories.UnitTestFactory;
 import com.galmv_.niceia.domain.comment.Comment;
 import com.galmv_.niceia.domain.student.exceptions.UserNotFoundException;
 import org.junit.Assert;

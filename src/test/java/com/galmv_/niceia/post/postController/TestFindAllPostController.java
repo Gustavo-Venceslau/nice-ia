@@ -1,6 +1,6 @@
 package com.galmv_.niceia.post.postController;
 
-import com.galmv_.niceia.IntegrationTestFactory;
+import com.galmv_.niceia.shared.testFactories.IntegrationTestFactory;
 import org.junit.Test;
 import org.junit.jupiter.api.DisplayName;
 import org.springframework.http.MediaType;
