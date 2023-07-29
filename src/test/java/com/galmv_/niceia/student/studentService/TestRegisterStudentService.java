@@ -1,6 +1,6 @@
 package com.galmv_.niceia.student.studentService;
 
-import com.galmv_.niceia.shared.testFactories.UnitTestFactory;
+import com.galmv_.niceia.testFactories.UnitTestFactory;
 import com.galmv_.niceia.auth.AuthenticationResponse;
 import com.galmv_.niceia.auth.AuthenticationService;
 import com.galmv_.niceia.auth.RegisterRequest;

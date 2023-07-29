@@ -1,6 +1,6 @@
 package com.galmv_.niceia.comment.commentService;
 
-import com.galmv_.niceia.shared.testFactories.UnitTestFactory;
+import com.galmv_.niceia.testFactories.UnitTestFactory;
 
 import com.galmv_.niceia.domain.comment.dtos.CreateAndUpdateCommentDTO;
 import com.galmv_.niceia.domain.comment.exceptions.CommentNotFoundException;

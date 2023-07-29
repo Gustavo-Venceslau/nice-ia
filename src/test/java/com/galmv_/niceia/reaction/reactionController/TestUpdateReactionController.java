@@ -1,7 +1,7 @@
 package com.galmv_.niceia.reaction.reactionController;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
-import com.galmv_.niceia.shared.testFactories.IntegrationTestFactory;
+import com.galmv_.niceia.testFactories.IntegrationTestFactory;
 import com.galmv_.niceia.domain.reaction.Enums.Type;
 import org.junit.Test;
 import org.junit.jupiter.api.DisplayName;

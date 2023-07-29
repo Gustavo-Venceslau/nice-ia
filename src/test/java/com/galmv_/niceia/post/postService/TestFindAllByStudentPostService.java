@@ -1,6 +1,6 @@
 package com.galmv_.niceia.post.postService;
 
-import com.galmv_.niceia.shared.testFactories.UnitTestFactory;
+import com.galmv_.niceia.testFactories.UnitTestFactory;
 import com.galmv_.niceia.domain.post.Post;
 import com.galmv_.niceia.domain.student.exceptions.UserNotFoundException;
 import org.junit.Assert;

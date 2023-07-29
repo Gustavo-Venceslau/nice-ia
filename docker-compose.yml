@@ -13,9 +13,9 @@ services:
       - db_volume:/var/mysql
   app:
     build:
-      context: ../docker
+      context: .
       dockerfile: Dockerfile_App
-    command: java -jar /app.jar
+    command: java -jar app.jar
     container_name: spring-container
     ports:
       - "8081:8081"
@@ -29,7 +29,7 @@ services:
       - db
   jenkins:
     build:
-      context: ../docker/
+      context: .
       dockerfile: Dockerfile_Jenkins
     container_name: jenkins
     ports:

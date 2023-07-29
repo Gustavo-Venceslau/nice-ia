@@ -1,6 +1,6 @@
 package com.galmv_.niceia.student.studentService;
 
-import com.galmv_.niceia.shared.testFactories.UnitTestFactory;
+import com.galmv_.niceia.testFactories.UnitTestFactory;
 import com.galmv_.niceia.domain.student.StudentDTO;
 import com.galmv_.niceia.domain.student.Student;
 import com.galmv_.niceia.domain.student.enums.StudentRole;

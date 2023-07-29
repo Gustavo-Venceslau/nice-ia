@@ -1,6 +1,6 @@
 package com.galmv_.niceia.reaction.reactionService;
 
-import com.galmv_.niceia.shared.testFactories.UnitTestFactory;
+import com.galmv_.niceia.testFactories.UnitTestFactory;
 import com.galmv_.niceia.domain.reaction.exceptions.ReactionNotFoundedException;
 import org.junit.Assert;
 import org.junit.Test;

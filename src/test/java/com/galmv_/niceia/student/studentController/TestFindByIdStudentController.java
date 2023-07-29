@@ -1,6 +1,6 @@
 package com.galmv_.niceia.student.studentController;
 
-import com.galmv_.niceia.shared.testFactories.IntegrationTestFactory;
+import com.galmv_.niceia.testFactories.IntegrationTestFactory;
 import org.junit.Test;
 import org.junit.jupiter.api.DisplayName;
 import org.springframework.http.MediaType;

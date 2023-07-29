@@ -1,7 +1,7 @@
 package com.galmv_.niceia.post.postController;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
-import com.galmv_.niceia.shared.testFactories.IntegrationTestFactory;
+import com.galmv_.niceia.testFactories.IntegrationTestFactory;
 import com.galmv_.niceia.domain.post.Post;
 import com.galmv_.niceia.domain.student.Student;
 import com.galmv_.niceia.domain.student.enums.StudentRole;
