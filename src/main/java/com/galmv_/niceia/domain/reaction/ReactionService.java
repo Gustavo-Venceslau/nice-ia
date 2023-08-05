@@ -5,8 +5,8 @@ import com.galmv_.niceia.domain.comment.CommentRepository;
 import com.galmv_.niceia.domain.comment.CommentService;
 import com.galmv_.niceia.domain.post.Post;
 import com.galmv_.niceia.domain.post.PostRepository;
-import com.galmv_.niceia.domain.post.PostService;
 import com.galmv_.niceia.domain.post.exceptions.PostNotFoundedException;
+import com.galmv_.niceia.domain.post.services.FindByIdPostService;
 import com.galmv_.niceia.domain.reaction.Enums.Type;
 import com.galmv_.niceia.domain.reaction.exceptions.ReactionNotFoundedException;
 import com.galmv_.niceia.domain.student.Student;
@@ -31,7 +31,7 @@ public class ReactionService {
 
     private final StudentRepository studentRepository;
 
-    private final PostService postService;
+    private final FindByIdPostService findByIdPostService;
 
     private final CommentService commentService;
 
@@ -54,7 +54,7 @@ public class ReactionService {
     }
 
     public List<Reaction> findAllByPost(UUID id){
-        Post post = this.postService.findById(id);
+        Post post = this.findByIdPostService.execute(id);
 
         return this.reactionRepository.findAllByPost(post);
     }

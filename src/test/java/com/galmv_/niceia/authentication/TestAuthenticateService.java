@@ -22,7 +22,8 @@ public class TestAuthenticateService extends UnitTestFactory {
     @Test
     @DisplayName("should to be able to authenticate a user if this one exists")
     public void testSuccessAuthenticate(){
-        AuthenticationRequest request = new AuthenticationRequest("gustavo@mail.com", "123");
+
+        AuthenticationRequest request = new AuthenticationRequest(studentAuthenticate.getEmail(), studentAuthenticate.getPassword());
 
         AuthenticationResponse response = authenticateService.execute(request);
 

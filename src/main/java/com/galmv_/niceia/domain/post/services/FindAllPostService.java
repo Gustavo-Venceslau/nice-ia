@@ -6,22 +6,21 @@ import com.galmv_.niceia.domain.post.exceptions.PostNotFoundedException;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
-import java.util.Optional;
-import java.util.UUID;
+import java.util.List;
 
 @Service
 @RequiredArgsConstructor
-public class FindByIdPostService {
+public class FindAllPostService {
 
     private final PostRepository repository;
 
-    public Post execute(UUID id){
-        Optional<Post> post = this.repository.findById(id);
+    public List<Post> execute() {
+        List<Post> posts = this.repository.findAll();
 
-        if(post.isEmpty()){
-            throw new PostNotFoundedException("Post not founded");
+        if(posts.isEmpty()){
+            throw new PostNotFoundedException("Posts not founded!");
         }
 
-        return post.get();
+        return posts;
     }
 }
