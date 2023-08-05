@@ -11,8 +11,7 @@ import com.galmv_.niceia.domain.reaction.Enums.Type;
 import com.galmv_.niceia.domain.reaction.exceptions.ReactionNotFoundedException;
 import com.galmv_.niceia.domain.student.Student;
 import com.galmv_.niceia.domain.student.StudentRepository;
-import com.galmv_.niceia.domain.student.StudentService;
-import com.galmv_.niceia.shared.exception.EntityNotFoundException;
+import com.galmv_.niceia.domain.student.services.FindByIdStudentService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
@@ -36,7 +35,7 @@ public class ReactionService {
 
     private final CommentService commentService;
 
-    private final StudentService studentService;
+    private final FindByIdStudentService findByIdStudentService;
 
     public Reaction findById(UUID id) {
         Optional<Reaction> optionalReaction = this.reactionRepository.findById(id);
@@ -49,7 +48,7 @@ public class ReactionService {
     }
 
     public List<Reaction> findAllByStudent(UUID id) {
-        Student student = studentService.findById(id);
+        Student student = findByIdStudentService.execute(id);
 
         return reactionRepository.findAllByStudent(student);
     }

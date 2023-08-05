@@ -6,13 +6,11 @@ import com.galmv_.niceia.domain.comment.CommentService;
 import com.galmv_.niceia.domain.post.Post;
 import com.galmv_.niceia.domain.post.PostRepository;
 import com.galmv_.niceia.domain.post.PostService;
-import com.galmv_.niceia.domain.reaction.Enums.Type;
 import com.galmv_.niceia.domain.reaction.Reaction;
 import com.galmv_.niceia.domain.reaction.ReactionRepository;
 import com.galmv_.niceia.domain.reaction.ReactionService;
 import com.galmv_.niceia.domain.student.Student;
 import com.galmv_.niceia.domain.student.StudentRepository;
-import com.galmv_.niceia.domain.student.StudentService;
 import com.galmv_.niceia.testFactories.data.MakeComment;
 import com.galmv_.niceia.testFactories.data.MakePost;
 import com.galmv_.niceia.testFactories.data.MakeReaction;
@@ -40,8 +38,6 @@ public class UnitTestFactory {
     @Resource
     protected ReactionRepository reactionRepository;
 
-    @Autowired
-    protected StudentService studentService;
     @Autowired
     protected PostService postService;
     @Autowired

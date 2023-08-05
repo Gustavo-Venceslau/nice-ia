@@ -9,7 +9,7 @@ import org.springframework.test.web.servlet.result.MockMvcResultMatchers;
 
 import java.util.UUID;
 
-public class TestDeleteStudentController extends IntegrationTestFactory {
+public class TestStudentDeleteController extends IntegrationTestFactory {
 
 
     @Test

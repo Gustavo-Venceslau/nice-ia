@@ -12,7 +12,7 @@ import org.springframework.test.web.servlet.result.MockMvcResultMatchers;
 
 import java.util.UUID;
 
-public class TestUpdateStudentController extends IntegrationTestFactory {
+public class TestStudentUpdateController extends IntegrationTestFactory {
 
     ObjectMapper mapper = new ObjectMapper();
 

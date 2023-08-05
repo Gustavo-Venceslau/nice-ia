@@ -1,12 +1,11 @@
 package com.galmv_.niceia.config;
 
-import com.galmv_.niceia.auth.AuthenticationService;
 import com.galmv_.niceia.auth.RegisterRequest;
+import com.galmv_.niceia.auth.services.RegisterService;
 import com.galmv_.niceia.domain.comment.Comment;
 import com.galmv_.niceia.domain.comment.CommentRepository;
 import com.galmv_.niceia.domain.post.Post;
 import com.galmv_.niceia.domain.post.PostRepository;
-import com.galmv_.niceia.domain.reaction.Enums.ComponentType;
 import com.galmv_.niceia.domain.reaction.Enums.Type;
 import com.galmv_.niceia.domain.reaction.Reaction;
 import com.galmv_.niceia.domain.reaction.ReactionRepository;
@@ -32,7 +31,7 @@ public class Instantiation implements CommandLineRunner {
 
     private final ReactionRepository reactionRepository;
 
-    private final AuthenticationService service;
+    private final RegisterService registerService;
 
     private final PasswordEncoder passwordEncoder;
 
@@ -43,9 +42,9 @@ public class Instantiation implements CommandLineRunner {
         RegisterRequest student2 = new RegisterRequest("sandro", "paz", "sandro@mail.com", "12345");
         RegisterRequest student3 = new RegisterRequest("maria", "souza", "marias@mail.com", "123345");
 
-        service.register(student1);
-        service.register(student2);
-        service.register(student3);
+        registerService.execute(student1);
+        registerService.execute(student2);
+        registerService.execute(student3);
 
         Student student4 = new
                 Student(null, "Almeida", "Venceslau", "almeida@mail.com", passwordEncoder.encode("12345"), StudentRole.USER);
