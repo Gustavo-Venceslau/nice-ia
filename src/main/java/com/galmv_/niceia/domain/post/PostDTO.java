@@ -1,4 +1,6 @@
 package com.galmv_.niceia.domain.post;
 
-public record PostDTO(String title, String imageURL) {
+import java.util.UUID;
+
+public record PostDTO(String title, String imageURL, UUID studentId) {
 }

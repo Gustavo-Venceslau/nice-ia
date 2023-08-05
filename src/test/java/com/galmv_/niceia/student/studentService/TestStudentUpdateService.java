@@ -1,5 +1,7 @@
 package com.galmv_.niceia.student.studentService;
 
+import com.galmv_.niceia.domain.student.services.FindByIdStudentService;
+import com.galmv_.niceia.domain.student.services.StudentUpdateService;
 import com.galmv_.niceia.testFactories.UnitTestFactory;
 import com.galmv_.niceia.domain.student.StudentDTO;
 import com.galmv_.niceia.domain.student.Student;
@@ -13,10 +15,16 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 
 import java.util.UUID;
 
-public class TestUpdateStudentService extends UnitTestFactory {
+public class TestStudentUpdateService extends UnitTestFactory {
 
     @Autowired
     private PasswordEncoder passwordEncoder;
+
+    @Autowired
+    private StudentUpdateService updateStudentService;
+
+    @Autowired
+    private FindByIdStudentService findByIdStudentService;
 
     @Test
     @DisplayName("it should to able to update a existing user")
@@ -27,9 +35,9 @@ public class TestUpdateStudentService extends UnitTestFactory {
 
         StudentDTO studentDTO = new StudentDTO("gu", "almeida", "gua@mail.com", passwordEncoder.encode("123456"));
 
-        this.studentService.update(student.getId(), studentDTO);
+        this.updateStudentService.execute(student.getId(), studentDTO);
 
-        Assert.assertEquals("gua@mail.com", this.studentService.findById(student.getId()).getEmail());
+        Assert.assertEquals("gua@mail.com", this.findByIdStudentService.execute(student.getId()).getEmail());
     }
 
     @Test
@@ -37,7 +45,7 @@ public class TestUpdateStudentService extends UnitTestFactory {
     public void testFailUpdate(){
         StudentDTO studentDTO = new StudentDTO("gu", "almeida", "gua@mail.com", passwordEncoder.encode("123456"));
 
-        Assert.assertThrows(UserNotFoundException.class, () -> this.studentService.update(new UUID(0, 0), studentDTO));
+        Assert.assertThrows(UserNotFoundException.class, () -> this.updateStudentService.execute(new UUID(0, 0), studentDTO));
     }
 
 }

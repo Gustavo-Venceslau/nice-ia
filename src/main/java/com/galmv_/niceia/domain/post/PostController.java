@@ -63,9 +63,9 @@ public class PostController {
     }
 
     @PostMapping
-    public ResponseEntity<Post> create(@RequestBody PostDTO post, @RequestHeader(name = "Authorization") String token){
+    public ResponseEntity<Post> create(@RequestBody PostDTO post){
         try {
-            Post post1 = this.postService.create(post, token);
+            Post post1 = this.postService.create(post);
 
             URI uri = ServletUriComponentsBuilder.fromCurrentRequest().path("/{id}").buildAndExpand(post1.getId()).toUri();
 

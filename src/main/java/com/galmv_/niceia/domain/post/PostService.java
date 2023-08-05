@@ -59,30 +59,20 @@ public class PostService {
         return repository.findAllByStudent(optionalStudent.get());
     }
 
-    public Post create(PostDTO post, String token){
-        Student student = findUserToCretePost(token);
+    public Post create(PostDTO post){
+        Optional<Student> optionalStudent = studentRepository.findById(post.studentId());
+
+        if(optionalStudent.isEmpty()){
+            throw new UserNotFoundException("User not found!");
+        }
 
         Post postToSave = Post.builder()
                 .title(post.title())
                 .imageURL(post.imageURL())
-                .student(student)
+                .student(optionalStudent.get())
                 .build();
 
         return this.repository.save(postToSave);
-    }
-    private Student findUserToCretePost(String token){
-        System.out.println(token);
-
-        String jwtTokenFormatted = token.split(" ")[1].trim();
-
-        String username = jwtService.extractUsername(jwtTokenFormatted);
-        Optional<Student> optionalStudent = studentRepository.findByEmail(username);
-
-        if(optionalStudent.isEmpty()){
-            throw new UserNotFoundException("User not found to create a post");
-        }
-
-        return optionalStudent.get();
     }
 
     public void update(UUID id, PostDTO postNewData) {

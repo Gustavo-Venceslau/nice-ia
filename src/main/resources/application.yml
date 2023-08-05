@@ -4,4 +4,4 @@ spring:
   jpa:
     open-in-view: true
 server:
-  port: 8081
+  port: 8082

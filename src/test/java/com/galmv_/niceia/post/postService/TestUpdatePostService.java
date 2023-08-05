@@ -15,7 +15,7 @@ public class TestUpdatePostService extends UnitTestFactory {
     @DisplayName("it should to be able to update a post if exist")
     public void testSuccessUpdatePost(){
 
-        PostDTO postDataToUpdate = new PostDTO("title", "image2");
+        PostDTO postDataToUpdate = new PostDTO("title", "image2", student.getId());
 
         this.postService.update(post.getId(), postDataToUpdate);
 
@@ -26,6 +26,6 @@ public class TestUpdatePostService extends UnitTestFactory {
     @DisplayName("it should not to be able to update a post that not exists")
     public void testFailUpdatePost(){
         Assert.assertThrows(PostNotFoundedException.class, ()
-                -> this.postService.update(new UUID(0, 0), new PostDTO("", "")));
+                -> this.postService.update(new UUID(0, 0), new PostDTO("", "", student.getId())));
     }
 }

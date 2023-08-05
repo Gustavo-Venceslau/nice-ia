@@ -1,13 +1,13 @@
-package com.galmv_.niceia.auth;
+package com.galmv_.niceia.auth.services;
 
+import com.galmv_.niceia.auth.AuthenticationResponse;
+import com.galmv_.niceia.auth.RegisterRequest;
 import com.galmv_.niceia.config.JwtService;
-import com.galmv_.niceia.domain.student.StudentRepository;
 import com.galmv_.niceia.domain.student.Student;
+import com.galmv_.niceia.domain.student.StudentRepository;
 import com.galmv_.niceia.domain.student.enums.StudentRole;
 import com.galmv_.niceia.domain.student.exceptions.UserAlreadyExistsException;
 import lombok.RequiredArgsConstructor;
-import org.springframework.security.authentication.AuthenticationManager;
-import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
@@ -15,14 +15,13 @@ import java.util.Optional;
 
 @Service
 @RequiredArgsConstructor
-public class AuthenticationService {
+public class RegisterService {
 
     private final StudentRepository repository;
     private final PasswordEncoder passwordEncoder;
     private final JwtService jwtService;
-    private final AuthenticationManager authenticationManager;
 
-    public AuthenticationResponse register(RegisterRequest request) {
+    public AuthenticationResponse execute(RegisterRequest request) {
         Optional<Student> optionalStudent = this.repository.findByEmail(request.getEmail());
 
         if(optionalStudent.isPresent()){
@@ -40,26 +39,6 @@ public class AuthenticationService {
         repository.save(user);
         var jwtToken = jwtService.generateToken(user);
 
-        return AuthenticationResponse.builder()
-                .token(jwtToken)
-                .build();
-    }
-
-    public AuthenticationResponse authenticate(AuthenticationRequest request) {
-        Optional<Student> optionalStudent = repository.findByEmail(request.getEmail());
-
-        if(optionalStudent.isEmpty()){
-            throw new UserInvalidCredentialsException("User credentials are invalid");
-        }
-
-        authenticationManager.authenticate(
-                new UsernamePasswordAuthenticationToken(
-                    request.getEmail(),
-                    request.getPassword()
-                )
-        );
-
-        var jwtToken = jwtService.generateToken(optionalStudent.get());
         return AuthenticationResponse.builder()
                 .token(jwtToken)
                 .build();

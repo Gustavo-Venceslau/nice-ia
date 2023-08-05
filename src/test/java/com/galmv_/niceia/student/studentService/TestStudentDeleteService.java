@@ -1,5 +1,6 @@
 package com.galmv_.niceia.student.studentService;
 
+import com.galmv_.niceia.domain.student.services.StudentDeleteService;
 import com.galmv_.niceia.testFactories.UnitTestFactory;
 import com.galmv_.niceia.domain.student.Student;
 import com.galmv_.niceia.domain.student.enums.StudentRole;
@@ -12,11 +13,13 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 
 import java.util.UUID;
 
-public class TestDeleteStudentService extends UnitTestFactory {
+public class TestStudentDeleteService extends UnitTestFactory {
 
     @Autowired
     private PasswordEncoder passwordEncoder;
 
+    @Autowired
+    private StudentDeleteService studentDeleteService;
     @Test
     @DisplayName("it should to be able to delete a existing student")
     public void testSuccessDelete(){
@@ -24,7 +27,7 @@ public class TestDeleteStudentService extends UnitTestFactory {
 
         this.studentRepository.save(student);
 
-        this.studentService.delete(student.getId());
+        this.studentDeleteService.execute(student.getId());
 
         Assert.assertTrue(this.studentRepository.findById(student.getId()).isEmpty());
     }
@@ -32,6 +35,6 @@ public class TestDeleteStudentService extends UnitTestFactory {
     @Test
     @DisplayName("it should not to be able to delete a student nonexisting student")
     public void testFailDelete(){
-        Assert.assertThrows(UserNotFoundException.class,() -> this.studentService.delete(new UUID(0, 0)));
+        Assert.assertThrows(UserNotFoundException.class,() -> this.studentDeleteService.execute(new UUID(0, 0)));
     }
 }

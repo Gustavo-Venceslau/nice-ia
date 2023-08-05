@@ -1,8 +1,8 @@
-package com.galmv_.niceia.student.studentService;
+package com.galmv_.niceia.authentication;
 
+import com.galmv_.niceia.auth.services.RegisterService;
 import com.galmv_.niceia.testFactories.UnitTestFactory;
 import com.galmv_.niceia.auth.AuthenticationResponse;
-import com.galmv_.niceia.auth.AuthenticationService;
 import com.galmv_.niceia.auth.RegisterRequest;
 import com.galmv_.niceia.config.JwtService;
 import com.galmv_.niceia.domain.student.Student;
@@ -12,10 +12,10 @@ import org.junit.Test;
 import org.junit.jupiter.api.DisplayName;
 import org.springframework.beans.factory.annotation.Autowired;
 
-public class TestRegisterStudentService extends UnitTestFactory {
+public class TestRegisterService extends UnitTestFactory {
 
     @Autowired
-    private AuthenticationService authenticationService;
+    private RegisterService registerService;
 
     @Autowired
     private JwtService jwtService;
@@ -32,7 +32,7 @@ public class TestRegisterStudentService extends UnitTestFactory {
                 .password(request.getPassword())
                 .build();
 
-        AuthenticationResponse responseToken = this.authenticationService.register(request);
+        AuthenticationResponse responseToken = this.registerService.execute(request);
         Assert.assertTrue(jwtService.isTokenValid(responseToken.getToken(), student));
     }
 
@@ -40,8 +40,8 @@ public class TestRegisterStudentService extends UnitTestFactory {
     @DisplayName("it should not be able to create")
     public void testFailRegisterStudent(){
         RegisterRequest request2 = new RegisterRequest("gu", "almeida", "gualmeida@mail.com", "123456");
-        this.authenticationService.register(request2);
+        this.registerService.execute(request2);
 
-        Assert.assertThrows(UserAlreadyExistsException.class, () -> this.authenticationService.register(request2));
+        Assert.assertThrows(UserAlreadyExistsException.class, () -> this.registerService.execute(request2));
     }
 }

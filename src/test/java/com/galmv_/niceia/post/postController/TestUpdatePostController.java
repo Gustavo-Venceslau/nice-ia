@@ -19,7 +19,7 @@ public class TestUpdatePostController extends IntegrationTestFactory {
     @Test
     @DisplayName("should to be able to update a post in /post/{id}")
     public void testSuccessUpdate() throws Exception{
-        PostDTO newPostData = new PostDTO("good morning guys", "url do cachorro");
+        PostDTO newPostData = new PostDTO("good morning guys", "url do cachorro", student.getId());
 
         String newPostDataRequest = mapper.writeValueAsString(newPostData);
 
@@ -35,7 +35,7 @@ public class TestUpdatePostController extends IntegrationTestFactory {
     @Test
     @DisplayName("should not to be able to update a post in /post/{id} if post not exists")
     public void testFailUpdate() throws Exception{
-        PostDTO newPostData = new PostDTO("good morning guys", "url do cachorro");
+        PostDTO newPostData = new PostDTO("good morning guys", "url do cachorro", student.getId());
 
         String newPostDataRequest = mapper.writeValueAsString(newPostData);
 

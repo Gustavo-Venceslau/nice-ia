@@ -1,6 +1,7 @@
 package com.galmv_.niceia.post.postController;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
+import com.galmv_.niceia.domain.post.PostDTO;
 import com.galmv_.niceia.testFactories.IntegrationTestFactory;
 import com.galmv_.niceia.domain.post.Post;
 import com.galmv_.niceia.domain.student.Student;
@@ -30,14 +31,11 @@ public class TestCreatePostController extends IntegrationTestFactory {
                 .studentRole(StudentRole.USER)
                 .build());
 
-        String token = jwtService.generateToken(student1);
+        PostDTO postToCreate = new PostDTO("new post", "URL", student1.getId());
 
-        Post post1 = new Post(UUID.randomUUID(), "new post", "URL", student1);
-
-        String postRequest = mapper.writeValueAsString(post1);
+        String postRequest = mapper.writeValueAsString(postToCreate);
 
         mockMvc.perform(MockMvcRequestBuilders.post("/post")
-                .header("Authorization", "Bearer " + token)
                 .contentType(MediaType.APPLICATION_JSON)
                 .characterEncoding("UTF-8")
                 .content(postRequest)
@@ -59,16 +57,11 @@ public class TestCreatePostController extends IntegrationTestFactory {
                 .studentRole(StudentRole.USER)
                 .build();
 
-        String token = jwtService.generateToken(student1);
+        PostDTO postToCreate = new PostDTO("new post", "URL", new UUID(0, 0));
 
-        System.out.println(jwtService.extractUsername(token));
-
-        Post post1 = new Post(UUID.randomUUID(), "new post", "URL", student1);
-
-        String postRequest = mapper.writeValueAsString(post1);
+        String postRequest = mapper.writeValueAsString(postToCreate);
 
         mockMvc.perform(MockMvcRequestBuilders.post("/post")
-                        .header("Authorization", "Bearer " + token)
                         .contentType(MediaType.APPLICATION_JSON)
                         .characterEncoding("UTF-8")
                         .content(postRequest)
