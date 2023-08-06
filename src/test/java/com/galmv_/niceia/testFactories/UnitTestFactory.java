@@ -4,7 +4,6 @@ import com.galmv_.niceia.auth.RegisterRequest;
 import com.galmv_.niceia.auth.services.RegisterService;
 import com.galmv_.niceia.domain.comment.Comment;
 import com.galmv_.niceia.domain.comment.CommentRepository;
-import com.galmv_.niceia.domain.comment.CommentService;
 import com.galmv_.niceia.domain.post.Post;
 import com.galmv_.niceia.domain.post.PostRepository;
 import com.galmv_.niceia.domain.reaction.Reaction;
@@ -41,8 +40,6 @@ public class UnitTestFactory {
 
     @Autowired
     protected RegisterService registerService;
-    @Autowired
-    protected CommentService commentService;
     @Autowired
     protected ReactionService reactionService;
 

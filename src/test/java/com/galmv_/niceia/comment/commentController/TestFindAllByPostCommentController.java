@@ -9,23 +9,23 @@ import org.springframework.test.web.servlet.result.MockMvcResultMatchers;
 
 import java.util.UUID;
 
-public class TestFindAllBtStudentCommentController extends IntegrationTestFactory {
+public class TestFindAllByPostCommentController extends IntegrationTestFactory {
 
     @Test
-    @DisplayName("Should to be able to find all comment in /comment/student/{id}")
-    public void testSuccessFindAll() throws Exception{
+    @DisplayName("should to be able to find all comments by post in /comment/post/{id}")
+    public void testSuccessFindAllByPost() throws Exception{
 
-        mockMvc.perform(MockMvcRequestBuilders.get("/comment/student/{id}", student.getId()))
+        mockMvc.perform(MockMvcRequestBuilders.get("/comment/post/{id}", post.getId()))
                 .andExpect(MockMvcResultMatchers.status().isOk())
                 .andExpect(MockMvcResultMatchers.jsonPath("$.size()").value(1))
                 .andDo(MockMvcResultHandlers.print());
     }
 
     @Test
-    @DisplayName("Should not to be able to find all comment in /comment/student/{id} if this student don't exists")
-    public void testFailFindAll() throws Exception{
+    @DisplayName("should not to be able to find all comments by post in /comment/post/{id} if post don't exists")
+    public void testFailFindAllByPost() throws Exception{
 
-        mockMvc.perform(MockMvcRequestBuilders.get("/comment/student/{id}", new UUID(0, 0)))
+        mockMvc.perform(MockMvcRequestBuilders.get("/comment/post/{id}", new UUID(0, 0)))
                 .andExpect(MockMvcResultMatchers.status().isNotFound())
                 .andDo(MockMvcResultHandlers.print());
     }

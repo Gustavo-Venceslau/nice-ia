@@ -2,7 +2,7 @@ package com.galmv_.niceia.domain.reaction;
 
 import com.galmv_.niceia.domain.comment.Comment;
 import com.galmv_.niceia.domain.comment.CommentRepository;
-import com.galmv_.niceia.domain.comment.CommentService;
+import com.galmv_.niceia.domain.comment.services.FindByIdCommentService;
 import com.galmv_.niceia.domain.post.Post;
 import com.galmv_.niceia.domain.post.PostRepository;
 import com.galmv_.niceia.domain.post.exceptions.PostNotFoundedException;
@@ -33,7 +33,7 @@ public class ReactionService {
 
     private final FindByIdPostService findByIdPostService;
 
-    private final CommentService commentService;
+    private final FindByIdCommentService findByIdCommentService;
 
     private final FindByIdStudentService findByIdStudentService;
 
@@ -60,7 +60,7 @@ public class ReactionService {
     }
 
     public List<Reaction> findAllByComment(UUID id) {
-        Comment commentToFind = this.commentService.findById(id);
+        Comment commentToFind = this.findByIdCommentService.execute(id);
 
         return this.reactionRepository.findAllByComment(commentToFind);
     }

@@ -12,7 +12,7 @@ import java.util.UUID;
 public interface CommentRepository extends JpaRepository<Comment, UUID> {
 
     List<Comment> findByStudent(Student student);
+    List<Comment> findAllByPost(Post post);
     void deleteAllByStudent(Student student);
-
     void deleteAllByPost(Post post);
 }

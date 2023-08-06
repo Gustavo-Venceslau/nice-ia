@@ -1,5 +1,6 @@
 package com.galmv_.niceia.comment.commentService;
 
+import com.galmv_.niceia.domain.comment.services.CommentCreateService;
 import com.galmv_.niceia.testFactories.UnitTestFactory;
 import com.galmv_.niceia.config.JwtService;
 import com.galmv_.niceia.domain.comment.Comment;
@@ -18,14 +19,17 @@ public class TestCreateCommentService extends UnitTestFactory {
     @Autowired
     private JwtService jwtService;
 
+    @Autowired
+    private CommentCreateService commentCreateService;
+
     @Test
     @DisplayName("should to be able to create a comment")
     public void testSuccessCreate(){
         String token = "Bearer " + jwtService.generateToken(student);
 
-        Comment comment1 = this.commentService.create("Good Evening", post.getId(), token);
+        Comment comment1 = this.commentCreateService.execute("Good Evening", post.getId(), token);
 
-        Assert.assertNotNull(commentRepository.findById(comment1.getId()));
+        Assert.assertFalse(commentRepository.findById(comment1.getId()).isEmpty());
     }
 
     @Test
@@ -34,7 +38,7 @@ public class TestCreateCommentService extends UnitTestFactory {
         String token = "Bearer " + jwtService.generateToken(student);
 
         Assert.assertThrows(EntityNotFoundException.class, () ->
-                this.commentService.create("", post.getId(), token));
+                this.commentCreateService.execute("", post.getId(), token));
     }
 
     @Test
@@ -43,7 +47,7 @@ public class TestCreateCommentService extends UnitTestFactory {
         String token = "Bearer " + jwtService.generateToken(student);
 
         Assert.assertThrows(EntityNotFoundException.class, () ->
-                this.commentService.create("", new UUID(0, 0), token));
+                this.commentCreateService.execute("", new UUID(0, 0), token));
     }
 
     @Test
@@ -53,6 +57,6 @@ public class TestCreateCommentService extends UnitTestFactory {
                 new Student(null, "bella", "bella", "bella@mail.com", "123", StudentRole.USER));
 
         Assert.assertThrows(EntityNotFoundException.class, () ->
-                this.commentService.create("", post.getId(), token));
+                this.commentCreateService.execute("", post.getId(), token));
     }
 }
