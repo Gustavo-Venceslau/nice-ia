@@ -8,7 +8,6 @@ import com.galmv_.niceia.domain.post.Post;
 import com.galmv_.niceia.domain.post.PostRepository;
 import com.galmv_.niceia.domain.reaction.Reaction;
 import com.galmv_.niceia.domain.reaction.ReactionRepository;
-import com.galmv_.niceia.domain.reaction.ReactionService;
 import com.galmv_.niceia.domain.student.Student;
 import com.galmv_.niceia.domain.student.StudentRepository;
 import com.galmv_.niceia.testFactories.data.MakeComment;
@@ -37,11 +36,8 @@ public class UnitTestFactory {
     protected CommentRepository commentRepository;
     @Resource
     protected ReactionRepository reactionRepository;
-
     @Autowired
     protected RegisterService registerService;
-    @Autowired
-    protected ReactionService reactionService;
 
     protected Student student = MakeStudent.execute();
     protected RegisterRequest studentAuthenticate = new RegisterRequest("Gustavo", "de Almeida", "gustavo1@mail.com", "1231");

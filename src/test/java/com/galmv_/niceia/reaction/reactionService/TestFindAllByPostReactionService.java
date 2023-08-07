@@ -1,5 +1,6 @@
 package com.galmv_.niceia.reaction.reactionService;
 
+import com.galmv_.niceia.domain.reaction.services.FindAllByPostReactionService;
 import com.galmv_.niceia.testFactories.UnitTestFactory;
 import com.galmv_.niceia.domain.post.exceptions.PostNotFoundedException;
 import com.galmv_.niceia.domain.reaction.Enums.Type;
@@ -7,11 +8,15 @@ import com.galmv_.niceia.domain.reaction.Reaction;
 import org.junit.Assert;
 import org.junit.Test;
 import org.junit.jupiter.api.DisplayName;
+import org.springframework.beans.factory.annotation.Autowired;
 
 import java.util.List;
 import java.util.UUID;
 
 public class TestFindAllByPostReactionService extends UnitTestFactory {
+
+    @Autowired
+    private FindAllByPostReactionService findAllByPostReactionService;
 
     @Test
     @DisplayName("should to be able to find All reactions by post")
@@ -21,7 +26,7 @@ public class TestFindAllByPostReactionService extends UnitTestFactory {
 
         System.out.println(post.getId());
 
-        List<Reaction> reactions = this.reactionService.findAllByPost(post.getId());
+        List<Reaction> reactions = this.findAllByPostReactionService.execute(post.getId());
 
         System.out.println(reactions);
 
@@ -32,6 +37,6 @@ public class TestFindAllByPostReactionService extends UnitTestFactory {
     @DisplayName("should not to be able to find All reactions by content if post not exists")
     public void testFailFindAllByPost(){
         Assert.assertThrows(PostNotFoundedException.class, () ->
-                this.reactionService.findAllByPost(new UUID(0, 0)));
+                this.findAllByPostReactionService.execute(new UUID(0, 0)));
     }
 }
